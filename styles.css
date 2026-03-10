@@ -134,10 +134,6 @@ body.manolo-theme { background-color: #FDFBF7; color: #2C2C2C; font-family: 'Int
 .manolo-logo { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #8B1E0B; font-weight: 800; font-style: italic; }
 .manolo-hero { text-align: center; padding: 6rem 5%; background: url('https://www.transparenttextures.com/patterns/cream-paper.png'); }
 
-body.nova-theme { background-color: #111111; color: #ffffff; font-family: 'Inter', sans-serif; min-height: 100vh; padding-bottom: 5rem; }
-.nova-logo { font-family: 'Outfit', sans-serif; font-size: 2rem; color: #FF4500; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
-.nova-hero { text-align: center; padding: 8rem 5%; background: radial-gradient(circle at center, #2a0b00 0%, #111 70%); }
-
 .ai-widget { position: fixed; bottom: 30px; right: 30px; background: #0d0e15; border-radius: 20px; padding: 1.5rem; width: 320px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); z-index: 1000; color: white; border: 1px solid rgba(255,255,255,0.1); }
 .ai-widget-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; font-weight: bold; font-size: 0.9rem; }
 .ai-widget-header span { background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }

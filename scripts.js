@@ -20,7 +20,7 @@ function simulateSend() {
     setTimeout(() => {
         const aiMsg = document.createElement('div');
         aiMsg.className = 'message msg-ai';
-        aiMsg.textContent = "Mensaje recibido. En la versión final, n8n procesará esto con Gemini consultando a PostgreSQL y Google Calendar.";
+        aiMsg.textContent = "Mensaje recibido. En la versión real, el orquestador n8n enviará esto al agente Mistral, que podrá consultar PostgreSQL y agendar tu reserva en Google Calendar de forma autónoma.";
         chatHistory.appendChild(aiMsg);
         chatHistory.scrollTop = chatHistory.scrollHeight;
     }, 1000);
