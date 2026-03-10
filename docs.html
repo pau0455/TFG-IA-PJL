@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AITalk | Developers Docs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="aitalk-theme">
+    <div class="glow"></div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">AITalk</a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="planes.html">Planes</a>
+            <a href="about.html">Sobre Nosotros</a>
+            <a href="docs.html" class="active">Developers Docs</a>
+            <a href="demo.html">Demo Chat</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="docs-layout">
+            <aside class="docs-sidebar">
+                <div class="group-title">Primeros Pasos</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-intro', this)" class="active">Introducción a AITalk</a></li>
+                    <li><a onclick="showDoc('doc-quickstart', this)">Guía de inicio rápido</a></li>
+                </ul>
+                <div class="group-title">Arquitectura & Nodos</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-n8n', this)">Orquestación con n8n</a></li>
+                    <li><a onclick="showDoc('doc-postgres', this)">Base de Datos (PostgreSQL)</a></li>
+                    <li><a onclick="showDoc('doc-calendar', this)">Integración Google Calendar</a></li>
+                </ul>
+                <div class="group-title">Modelos de IA</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-gemini', this)">Gemini 2.5 Pro</a></li>
+                    <li><a onclick="showDoc('doc-whisper', this)">Whisper (Speech 2 Text)</a></li>
+                </ul>
+                <div class="group-title">Despliegue</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-nginx', this)">Servidor Web Nginx</a></li>
+                    <li><a onclick="showDoc('doc-github', this)">Control de versiones (Github)</a></li>
+                </ul>
+            </aside>
+
+            <div class="docs-content">
+                <!-- PANEL 1: INTRODUCCIÓN (Con la estética GRID que pediste) -->
+                <div id="doc-intro" class="doc-pane active">
+                    <h1 style="font-size: 3rem; text-align: center; margin-bottom: 0.5rem;">Desarrolla con AITalk</h1>
+                    <p style="text-align: center; color: var(--ai-muted); margin-bottom: 3rem;">Documentación técnica de la plataforma creada por Pau Laguna, Joel Ortega y Liming Xin.</p>
+                    
+                    <input type="text" class="docs-search" placeholder="🔍 Buscar en la documentación (ej. n8n, Whisper, Webhooks)...">
+
+                    <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Arquitectura del Sistema</h2>
+                    <div class="docs-grid">
+                        <div class="docs-card" onclick="showDoc('doc-n8n', document.querySelectorAll('.docs-sidebar a')[2])">
+                            <span class="docs-icon">{ }</span>
+                            <h4>Orquestador (n8n)</h4>
+                            <p>El núcleo del proyecto. Utilizamos flujos de trabajo en n8n para conectar las diferentes APIs y dirigir los inputs.</p>
+                        </div>
+                        <div class="docs-card" onclick="showDoc('doc-gemini', document.querySelectorAll('.docs-sidebar a')[5])">
+                            <span class="docs-icon">🧠</span>
+                            <h4>Motor LLM (Gemini 2.5 Pro)</h4>
+                            <p>Analiza el contexto de la transcripción, extrae las intenciones del usuario y genera respuestas estructuradas.</p>
+                        </div>
+                        <div class="docs-card" onclick="showDoc('doc-whisper', document.querySelectorAll('.docs-sidebar a')[6])">
+                            <span class="docs-icon">🎙️</span>
+                            <h4>Speech to Text (Whisper)</h4>
+                            <p>Implementación open-source para transcribir el audio del cliente a texto plano con alta precisión.</p>
+                        </div>
+                        <div class="docs-card" onclick="showDoc('doc-postgres', document.querySelectorAll('.docs-sidebar a')[3])">
+                            <span class="docs-icon">🗄️</span>
+                            <h4>Base de Datos (PostgreSQL)</h4>
+                            <p>Almacena el inventario de menús, información de alérgenos y ubicaciones de los locales.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: N8N -->
+                <div id="doc-n8n" class="doc-pane">
+                    <h2>Orquestación con n8n</h2>
+                    <p>n8n es la herramienta de automatización que actúa como el sistema nervioso central de AITalk. Su arquitectura basada en nodos nos permite conectar APIs dispares sin necesidad de escribir código repetitivo.</p>
+                    <h3>Implementación en AITalk</h3>
+                    <p>Utilizamos el nodo <strong>Webhook</strong> como punto de entrada (Trigger). Cuando el usuario envía un mensaje desde el frontend, n8n recibe el payload HTTP POST y lo enruta al nodo de IA. n8n maneja lógica condicional: si el usuario pregunta por el menú, deriva el flujo a PostgreSQL; si quiere reservar, lo deriva a Google Calendar.</p>
+                    <div class="doc-code">
+                        // Payload recibido por el Webhook<br>
+                        {<br>
+                        &nbsp;&nbsp;"session_id": "usr_9841",<br>
+                        &nbsp;&nbsp;"message": "Reserva para 4 a las 21:00"<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- PANEL: POSTGRESQL -->
+                <div id="doc-postgres" class="doc-pane">
+                    <h2>Base de Datos (PostgreSQL)</h2>
+                    <p>PostgreSQL es vital para dar persistencia y contexto a la IA, permitiéndole conocer la "realidad" del negocio en lugar de depender de datos estáticos en el prompt.</p>
+                    <h3>Esquema y Consultas</h3>
+                    <p>La base de datos contiene esquemas para el inventario de menús (platos, alérgenos), información de locales (direcciones, horarios) y clientes. n8n ejecuta sentencias SQL dinámicas construidas según la intención detectada por Gemini.</p>
+                    <div class="doc-code">
+                        SELECT plate_name, is_gluten_free <br>
+                        FROM menus <br>
+                        WHERE category = 'principales' AND is_gluten_free = TRUE;
+                    </div>
+                </div>
+
+                <!-- PANEL: GOOGLE CALENDAR -->
+                <div id="doc-calendar" class="doc-pane">
+                    <h2>API de Google Calendar</h2>
+                    <p>Empleamos la API REST de Google Calendar autenticada mediante OAuth 2.0 / Service Accounts en Google Cloud Console. Esto permite a AITalk leer la disponibilidad y escribir nuevos eventos.</p>
+                    <h3>Verificación y Creación</h3>
+                    <p>Antes de confirmar una reserva, n8n consulta la API para verificar solapamientos. Si hay hueco libre, se ejecuta el método POST para insertar el evento.</p>
+                </div>
+
+                <!-- PANEL: GEMINI -->
+                <div id="doc-gemini" class="doc-pane">
+                    <h2>Motor LLM: Gemini 2.5 Pro</h2>
+                    <p>Utilizamos el modelo Gemini 2.5 Pro a través de Google AI Studio por su inmensa ventana de contexto y su avanzada capacidad de razonamiento lógico.</p>
+                    <h3>Function Calling (Uso de Herramientas)</h3>
+                    <p>La clave de nuestra integración no es solo generar texto, sino el <strong>Function Calling</strong>. Hemos instruido a Gemini con descripciones de funciones (ej. <code>check_availability()</code>). Cuando el usuario habla, Gemini responde solicitando a n8n que ejecute esa función específica en la BBDD.</p>
+                </div>
+
+                <!-- PANEL: WHISPER -->
+                <div id="doc-whisper" class="doc-pane">
+                    <h2>Módulo de Audio: Whisper</h2>
+                    <p>Whisper es un modelo de reconocimiento automático de voz (ASR) open-source desarrollado por OpenAI. Destaca por su precisión y robustez frente a diferentes acentos y ruido de fondo.</p>
+                    <h3>Roadmap</h3>
+                    <p>La arquitectura de n8n está preparada para insertar un nodo que reciba archivos de audio (.ogg, .mp3), los envíe a una instancia local de Whisper para la transcripción Speech-to-Text, y pase el texto resultante al flujo estándar de Gemini.</p>
+                </div>
+                
+                <!-- PANELES RESTANTES (De relleno para mantener coherencia) -->
+                <div id="doc-quickstart" class="doc-pane"><h2>Guía de Inicio Rápido</h2><p>Documentación en construcción para la configuración inicial del entorno local de n8n y variables de entorno.</p></div>
+                <div id="doc-nginx" class="doc-pane"><h2>Servidor Web Nginx</h2><p>Nginx actúa como proxy inverso exponiendo de forma segura los webhooks locales de n8n al widget frontend y manejando los certificados SSL.</p></div>
+                <div id="doc-github" class="doc-pane"><h2>Control de Versiones (Github)</h2><p>Todo el código fuente y exportaciones de JSON de los flujos de n8n se versionan en Git para el trabajo colaborativo del equipo.</p></div>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">Proyecto AITalk &copy; 2026.</footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
