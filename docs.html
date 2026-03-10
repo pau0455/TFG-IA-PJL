@@ -78,33 +78,35 @@
                     </div>
                 </div>
 
-                  <!-- PANEL: TELEGRAM -->
-                  <div id="doc-telegram" class="doc-pane">
+                <!-- PANEL: TELEGRAM -->
+                <div id="doc-telegram" class="doc-pane">
                     <h2>Módulo Telegram (Frontend)</h2>
                     <p>Actúa como frontend principal entre el cliente y el sistema. Escucha peticiones y retorna las respuestas generadas por la IA directamente al chat del usuario, ya sea en su dispositivo móvil o de escritorio.</p>
                     <h3>¿Por qué Telegram?</h3>
                     <p>Al delegar la tarea de atención al cliente a un agente de IA accesible mediante una plataforma de uso masivo como Telegram, <strong>se mejora significativamente la experiencia del usuario final</strong>. El cliente no tiene que lidiar con interfaces web complejas ni sufrir tiempos de espera telefónicos. Basados en nuestra experiencia técnica, Telegram resultó ser la opción más robusta y versátil para esta tarea frente a otras alternativas de mensajería.</p>
                 </div>
 
-                <!-- PANEL: N8N -->
+                <!-- PANEL: N8N (Formateado) -->
                 <div id="doc-n8n" class="doc-pane">
                     <h2>Orquestación con n8n</h2>
                     <p>n8n es el pilar fundamental y orquestador del proyecto. Permite integrar y coordinar los diferentes servicios que forman parte de la solución a través de flujos de trabajo automatizados, gestionando la comunicación entre la IA, PostgreSQL, Google Calendar y Telegram.</p>
+                    
                     <h3>Arquitectura Modular</h3>
                     <p>La arquitectura sigue un modelo de nodos modulares centralizados. El sistema se divide en piezas más pequeñas que, al unirse, conforman un sistema robusto:</p>
                     <ul>
-                        <li style="margin-bottom: 0.5rem;"><strong>Trigger:</strong> El nodo de Telegram escucha continuamente mensajes nuevos.</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Agente IA:</strong> El mensaje se pasa al nodo de "AI Agent" configurado con el modelo Devstral y un rol específico predefinido.</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Memoria en Postgres:</strong> Se utiliza un módulo de memoria permanente almacenando en la base de datos, lo que permite que la IA recuerde el contexto a largo plazo.</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Tools (Herramientas):</strong> Si el agente detecta que necesita accionar algo, llama de forma transparente a los submódulos (Calendar, BBDD).</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Respuesta:</strong> El agente formula una respuesta natural, ejecuta las acciones y n8n la devuelve al bot de Telegram.</li>
+                        <li><strong>Trigger:</strong> El nodo de Telegram escucha continuamente mensajes nuevos.</li>
+                        <li><strong>Agente IA:</strong> El mensaje se pasa al nodo de "AI Agent" configurado con el modelo Devstral y un rol específico predefinido.</li>
+                        <li><strong>Memoria en Postgres:</strong> Se utiliza un módulo de memoria permanente almacenando en la base de datos, lo que permite que la IA recuerde el contexto a largo plazo.</li>
+                        <li><strong>Tools (Herramientas):</strong> Si el agente detecta que necesita accionar algo, llama de forma transparente a los submódulos (Calendar, BBDD).</li>
+                        <li><strong>Respuesta:</strong> El agente formula una respuesta natural, ejecuta las acciones y n8n la devuelve al bot de Telegram.</li>
                     </ul>
                 </div>
 
-                <!-- PANEL: POSTGRESQL -->
+                <!-- PANEL: POSTGRESQL (Formateado y con código resaltado) -->
                 <div id="doc-postgres" class="doc-pane">
                     <h2>Base de Datos (PostgreSQL)</h2>
                     <p>Conexión directa a la base de datos relacional del restaurante. Hemos elegido PostgreSQL por ser un software Open Source robusto y sin coste de licencia. Además de almacenar el inventario, sirve para guardar el contexto (memoria) de la IA.</p>
+                    
                     <h3>Esquema Conceptual Completo</h3>
                     <p>Durante el desarrollo, diseñamos un esquema relacional profundo con las siguientes entidades principales:</p>
                     <ul>
@@ -113,27 +115,29 @@
                         <li><strong>Clientes:</strong> Se almacena su DNI, Nombre, Apellido y Teléfono para la gestión de sus perfiles.</li>
                         <li><strong>Reservas:</strong> Almacena la Fecha e ID del local y cliente. <em>Nota de desarrollo:</em> Durante las fases de prueba nos dimos cuenta de que debíamos expandir las capacidades; por ello añadimos una tabla intermedia para registrar el "menú" que el cliente ha pedido anticipadamente en su reserva, si es que lo solicita.</li>
                     </ul>
-                    <div class="doc-code">
-                        -- Ejemplo de consulta de IA para información dinámica<br>
-                        SELECT p.nombre, a.tipo_alergeno<br>
-                        FROM comida p<br>
-                        JOIN alergenos a ON p.id_alergeno = a.id<br>
-                        WHERE p.dia_s_disp = true;
+                    
+                    <div class="doc-code sql-block">
+                        <span class="sql-comment">-- Ejemplo de consulta de IA para información dinámica</span><br>
+                        <span class="sql-keyword">SELECT</span> <span class="sql-variable">p.nombre, a.tipo_alergeno</span><br>
+                        <span class="sql-keyword">FROM</span> <span class="sql-variable">comida p</span><br>
+                        <span class="sql-keyword">JOIN</span> <span class="sql-variable">alergenos a</span> <span class="sql-keyword">ON</span> <span class="sql-variable">p.id_alergeno = a.id</span><br>
+                        <span class="sql-keyword">WHERE</span> <span class="sql-variable">p.dia_s_disp = true;</span>
                     </div>
                 </div>
 
-                <!-- PANEL: GOOGLE CALENDAR -->
+                <!-- PANEL: GOOGLE CALENDAR (Formateado con lista blanca) -->
                 <div id="doc-calendar" class="doc-pane">
                     <h2>Gestión y Agendamiento (Google Calendar)</h2>
                     <p>Compuesto por acciones estructuradas por "campos", permite a la IA interactuar directamente con la agenda del restaurante empleando la API de Google Cloud Console.</p>
+                    
                     <h3>Flujo Funcional de una Reserva</h3>
                     <ol>
-                        <li style="margin-bottom: 0.5rem;">El cliente solicita una reserva (fecha, hora, personas).</li>
-                        <li style="margin-bottom: 0.5rem;">La IA comprueba en PostgreSQL si el cliente está registrado. En caso contrario, inicia la creación de un perfil pidiendo su DNI y datos.</li>
-                        <li style="margin-bottom: 0.5rem;">Una vez validados los datos, la IA ejecuta la acción <strong>"get events"</strong> en Calendar para revisar la disponibilidad del local.</li>
-                        <li style="margin-bottom: 0.5rem;">Si hay hueco, utiliza el módulo <strong>"create events"</strong> para asignar el título, hora de inicio y finalización directamente en el calendario.</li>
-                        <li style="margin-bottom: 0.5rem;">Simultáneamente, la IA realiza los cambios en PostgreSQL (añadiendo la reserva a la tabla y vinculando el menú si aplica).</li>
-                        <li style="margin-bottom: 0.5rem;">Finalmente, el sistema confirma la reserva al cliente vía Telegram de forma totalmente autónoma.</li>
+                        <li>El cliente solicita una reserva (fecha, hora, personas).</li>
+                        <li>La IA comprueba en PostgreSQL si el cliente está registrado. En caso contrario, inicia la creación de un perfil pidiendo su DNI y datos.</li>
+                        <li>Una vez validados los datos, la IA ejecuta la acción <strong>"get events"</strong> en Calendar para revisar la disponibilidad del local.</li>
+                        <li>Si hay hueco, utiliza el módulo <strong>"create events"</strong> para asignar el título, hora de inicio y finalización directamente en el calendario.</li>
+                        <li>Simultáneamente, la IA realiza los cambios en PostgreSQL (añadiendo la reserva a la tabla y vinculando el menú si aplica).</li>
+                        <li>Finalmente, el sistema confirma la reserva al cliente vía Telegram de forma totalmente autónoma.</li>
                     </ol>
                 </div>
 
@@ -174,6 +178,6 @@
         </div>
     </main>
     <footer class="site-footer">Proyecto AITalk &copy; 2025-2026. Pau Laguna, Joel Ortega, Liming Xin. Institut Puig Castellar.</footer>
+    
     <script src="scripts.js"></script>
 </body>
-</html>
