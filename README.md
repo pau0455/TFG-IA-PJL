@@ -18,7 +18,7 @@ Los archivos de este repositorio conforman la interfaz gráfica orientada a la p
 
 * **Documentación Técnica (`docs.html`):** Detalla la arquitectura de nodos, los modelos LLM elegidos, el diseño de la base de datos y la justificación de las tecnologías.
 * **Simulación / Mockups (`manolo.html`):** Entornos de prueba para demostrar cómo se integraría el chatbot en un entorno real.
-* **Dashboard de Desarrollo (`dashboard-dev.html`, `reservas.php`):** Un panel de control privado que se conecta directamente a la base de datos PostgreSQL. Utiliza PHP (con PDO) para extraer las reservas y Javascript para actualizar la tabla en tiempo real con Short Polling sin recargar la página.
+* **Dashboard de Desarrollo (`dashboard-dev.html`, `reservas.php`, `login-dev`):** Un panel de control privado que se conecta directamente a la base de datos PostgreSQL. Utiliza PHP (con PDO) para extraer las reservas y Javascript para actualizar la tabla en tiempo real con Short Polling sin recargar la página.
 
 ## 🛠️ Stack Tecnológico
 
