@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AITalk | Dashboard Dev</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="aitalk-theme">
+    <div class="glow"></div>
+    <nav class="navbar" style="justify-content: space-between;">
+        <div class="logo">AITalk DevCenter</div>
+        <button onclick="logoutDev()" class="btn" style="background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.3); color: #ff9b9b; padding: 0.5rem 1rem;">Cerrar Sesión</button>
+    </nav>
+
+    <main style="max-width: 1400px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Panel de Reservas Activas</h1>
+        <p style="color: var(--ai-muted); margin-bottom: 3rem;">Vista en tiempo real extraída de PostgreSQL.</p>
+
+        <div class="table-container">
+            <table class="dev-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha y Hora</th>
+                        <th>Cliente Titular</th>
+                        <th>Contacto</th>
+                        <th>Local</th>
+                        <th>Menú Solicitado</th>
+                        <th>Nº Personas</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="reservas-body">
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 3rem; color: var(--ai-muted);">
+                            <span style="font-size: 1.5rem;">🔄</span><br>Cargando reservas desde la base de datos...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="scripts.js"></script>
+    <script>
+        if(sessionStorage.getItem('dev_logged') !== 'true') {
+            window.location.href = 'login-dev.html';
+        } else {
+            // Ejecuta la primera carga al instante
+            fetchReservas();
+            // Bucle en tiempo real: Comprueba la BBDD cada 2 segundos silenciosamente
+            setInterval(fetchReservas, 2000); 
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>

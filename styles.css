@@ -11,6 +11,7 @@
    6. PÁGINA: DEMO CHAT (Interfaz de simulación)
    7. PÁGINA: DOCS DEVELOPERS (Layout lateral, formato de texto y código)
    8. TEMAS EXTERNOS (Webs hipotéticas como Restaurantes Manolo)
+   9. VISTA DESARROLLADOR (LOGIN Y DASHBOARD)
    ========================================================================== */
 
 
@@ -506,13 +507,13 @@ main {
 /* ==========================================================================
    7. PÁGINA: DOCS DEVELOPERS
    ========================================================================== */
-.docs-layout {
+   .docs-layout {
     display: flex;
     gap: 3rem;
     align-items: flex-start;
 }
 
-/* Menú Lateral (Sidebar) */
+/* --- Menú Lateral (Sidebar) --- */
 .docs-sidebar {
     width: 250px;
     position: sticky;
@@ -520,7 +521,8 @@ main {
 }
 
 .docs-sidebar ul {
-    list-style: none;
+    list-style: none !important;
+    padding-left: 0 !important;
 }
 
 .docs-sidebar li {
@@ -554,7 +556,7 @@ main {
     padding-left: 8px;
 }
 
-/* Área principal de Documentación */
+/* --- Área principal de Documentación --- */
 .docs-content {
     flex: 1;
 }
@@ -568,57 +570,109 @@ main {
     display: block;
 }
 
+/* Títulos idénticos a las capturas (Extra Bold y Blancos) */
 .doc-pane h2 {
     font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
 }
 
 .doc-pane h3 {
-    font-size: 1.3rem;
-    margin: 2rem 0 1rem;
-    color: #e5e7eb;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 2.5rem 0 1.2rem;
 }
 
+/* Párrafos base (Gris) */
 .doc-pane p {
     color: var(--ai-muted);
-    margin-bottom: 1.5rem;
     line-height: 1.7;
     font-size: 1.05rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Estilos de Listas para que sean idénticas a las capturas de pantalla */
+/* --- FORMATO ESPECÍFICO DE LISTAS PARA CLAVAR LAS CAPTURAS --- */
+
+/* Anulamos los márgenes por defecto del navegador para control absoluto */
 .doc-pane ul,
 .doc-pane ol {
-    margin-left: 1.5rem;
+    list-style: none !important; 
+    padding-left: 0 !important;
+    margin-left: 0 !important;
     margin-bottom: 2rem;
 }
 
-.doc-pane li {
+/* =========================================
+   REGLAS COMUNES PARA TODAS LAS LISTAS (ul y ol)
+   ========================================= */
+.doc-pane ul li,
+.doc-pane ol li {
+    position: relative;
+    margin-bottom: 1.5rem;
+    color: var(--ai-muted); /* TODO EL TEXTO BASE EN GRIS */
     font-size: 1.05rem;
     line-height: 1.7;
-    margin-bottom: 1rem;
 }
 
-.doc-pane ul li {
-    color: var(--ai-muted); /* Texto base en gris */
+/* Las palabras en negrita (<strong>) se vuelven BLANCAS */
+.doc-pane ul li strong,
+.doc-pane ol li strong {
+    color: #ffffff;
+    font-weight: 700;
 }
 
-.doc-pane ul li strong {
-    color: var(--ai-text); /* Las negritas en blanco */
-    font-weight: 600;
-}
-
-.doc-pane ul li em {
-    color: var(--ai-text); /* Cursivas en blanco */
+/* Las palabras en cursiva (<em>) se vuelven BLANCAS */
+.doc-pane ul li em,
+.doc-pane ol li em {
+    color: #ffffff;
     font-style: italic;
 }
 
-.doc-pane ol li {
-    color: var(--ai-text); /* Las listas numeradas enteramente en blanco */
+
+/* =========================================
+   1. LISTAS CON VIÑETAS (PostgreSQL / n8n)
+   ========================================= */
+.doc-pane ul li {
+    padding-left: 1.2rem; /* Espacio para el punto */
 }
 
-/* Bloque de Código SQL (Estilo VSCode/Terminal) */
+/* Dibujamos el punto manualmente alineado a la izquierda */
+.doc-pane ul li::before {
+    content: "•"; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--ai-text); /* Punto blanco/claro */
+    font-weight: bold;
+}
+
+
+/* =========================================
+   2. LISTAS NUMERADAS (Google Calendar)
+   ========================================= */
+.doc-pane ol {
+    counter-reset: doc-counter; /* Iniciamos un contador interno CSS */
+}
+
+.doc-pane ol li {
+    counter-increment: doc-counter; /* Sumamos 1 por cada elemento */
+    padding-left: 1.5rem; /* Espacio exacto entre el número y el texto */
+}
+
+/* Dibujamos el número (1., 2., 3...) exactamente en la coordenada 0 */
+.doc-pane ol li::before {
+    content: counter(doc-counter) "."; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ffffff; /* El número en blanco para que destaque levemente */
+    font-weight: 600;
+}
+
+/* --- Bloque de Código SQL --- */
 .doc-code.sql-block {
     background: #09090b;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -631,11 +685,11 @@ main {
     overflow-x: auto;
 }
 
-.sql-comment { color: #a78bfa; } /* Color morado suave */
-.sql-keyword { color: #c084fc; font-weight: 500; } /* Comandos SQL */
-.sql-variable { color: #e879f9; } /* Tablas y columnas */
+.sql-comment { color: #a78bfa; } 
+.sql-keyword { color: #c084fc; font-weight: 500; } 
+.sql-variable { color: #e879f9; } 
 
-/* Grid de Tarjetas iniciales en la Intro de Docs */
+/* --- Grid de Tarjetas Iniciales --- */
 .docs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -672,6 +726,7 @@ main {
     color: var(--ai-muted);
     font-size: 0.95rem;
     line-height: 1.6;
+    margin-bottom: 0; /* Anula el margin general de 'p' dentro de la tarjeta */
 }
 
 
@@ -763,4 +818,91 @@ body.manolo-theme {
     color: #a855f7;
     text-decoration: none;
     font-weight: 600;
+}
+
+/* ==========================================================================
+   VISTA DESARROLLADOR (LOGIN Y DASHBOARD)
+   ========================================================================== */
+   .login-box {
+    background: var(--ai-surface);
+    border: 1px solid var(--ai-border);
+    padding: 3rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--ai-border);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.login-input:focus {
+    border-color: #a855f7;
+}
+
+.table-container {
+    background: var(--ai-surface);
+    border: 1px solid var(--ai-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.dev-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dev-table th {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.2rem;
+    font-weight: 600;
+    color: var(--ai-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--ai-border);
+}
+
+.dev-table td {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--ai-border);
+    color: #e5e7eb;
+}
+
+.dev-table tbody tr {
+    transition: background 0.2s;
+}
+
+.dev-table tbody tr:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.badge-personas {
+    background: #3b82f6;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.badge-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid #10b981;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
 }
