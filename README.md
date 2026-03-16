@@ -59,7 +59,7 @@ $pass = 'tu_contraseña';
 
 ### 4. Levantar el servidor web
 
-En la carpeta raiz de la web ejecuta el siguente comando en la cosola:
+En la carpeta raiz de la web ejecuta el siguente comando en la consola:
 
 ```bash
 php -S localhost:8000
