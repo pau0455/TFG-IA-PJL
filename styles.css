@@ -879,6 +879,7 @@ body.manolo-theme {
     padding: 1.2rem;
     border-bottom: 1px solid var(--ai-border);
     color: #e5e7eb;
+    vertical-align: top;
 }
 
 .dev-table tbody tr {

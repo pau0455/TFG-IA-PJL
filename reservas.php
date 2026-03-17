@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 
 // Configuración de la base de datos
-$host = '192.168.168.10';
+$host = '192.168.168.10'; // Asegúrate de que esta es tu IP actual
 $db   = 'restaurante';
 $user = 'postgres';
 $pass = '12345'; 
@@ -16,7 +16,7 @@ try {
     $dsn = "pgsql:host=$host;port=$port;dbname=$db;";
     $pdo = new PDO($dsn, $user, $pass,[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    // NUEVA CONSULTA SQL ADAPTADA AL ESQUEMA CABECERA-DETALLE
+    // CONSULTA SQL ACTUALIZADA: Extrae tanto menús como platos sueltos
     $query = "
         SELECT 
             r.id_reserva,
@@ -26,13 +26,20 @@ try {
             c.apellido AS cliente_apellido,
             c.telefono,
             l.ciudad AS local_ciudad,
-            -- Subconsulta para sacar los menús de la nueva tabla 'reserva_detalle_menu'
+            -- 1. Subconsulta para Menús
             (
                 SELECT STRING_AGG(m.nombre_m || ' (x' || rdm.cantidad || ')', ', ')
                 FROM reserva_detalle_menu rdm
                 JOIN menu m ON rdm.id_menu = m.id_menu
                 WHERE rdm.id_reserva = r.id_reserva
-            ) AS menu_nombre
+            ) AS menus_solicitados,
+            -- 2. Subconsulta para Platos Sueltos
+            (
+                SELECT STRING_AGG(com.nombre_c || ' (x' || rdc.cantidad || ')', ', ')
+                FROM reserva_detalle_comida rdc
+                JOIN comida com ON rdc.id_comida = com.id_comida
+                WHERE rdc.id_reserva = r.id_reserva
+            ) AS platos_solicitados
         FROM reserva r
         JOIN clientes c ON r.dni_cliente = c.dni
         JOIN local l ON r.id_local = l.id_local
