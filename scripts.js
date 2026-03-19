@@ -1,3 +1,43 @@
+// Permitir enviar con la tecla Enter
+document.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter' && document.getElementById('chat-input')) {
+        simulateSend();
+    }
+});
+
+// --- Lógica de la Documentación (Pestañas interactivo) ---
+function showDoc(docId, element) {
+    const panes = document.querySelectorAll('.doc-pane');
+    panes.forEach(pane => pane.classList.remove('active'));
+    
+    const links = document.querySelectorAll('.docs-sidebar a');
+    links.forEach(link => link.classList.remove('active'));
+
+    document.getElementById(docId).classList.add('active');
+    element.classList.add('active');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- LÓGICA LOGIN DESARROLLADOR ---
+function checkDevLogin() {
+    const user = document.getElementById('dev-user').value;
+    const pass = document.getElementById('dev-pass').value;
+    const errorMsg = document.getElementById('login-error');
+
+    if (user === 'Manolo' && pass === 'Skibidi1234') {
+        sessionStorage.setItem('dev_logged', 'true');
+        window.location.href = 'dashboard-dev.html';
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+function logoutDev() {
+    sessionStorage.removeItem('dev_logged');
+    window.location.href = 'login-dev.html';
+}
+
 // --- LÓGICA DASHBOARD (Fetch a BBDD) ---
 let lastDataString = ""; // Variable para evitar redibujar si no hay cambios
 
