@@ -617,14 +617,14 @@ main {
     line-height: 1.7;
 }
 
-/* Las palabras en negrita (<strong>) se vuelven BLANCAS */
+/* Las palabras en negrita [strong] se vuelven BLANCAS */
 .doc-pane ul li strong,
 .doc-pane ol li strong {
     color: #ffffff;
     font-weight: 700;
 }
 
-/* Las palabras en cursiva (<em>) se vuelven BLANCAS */
+/* Las palabras en cursiva [em] se vuelven BLANCAS */
 .doc-pane ul li em,
 .doc-pane ol li em {
     color: #ffffff;
@@ -717,7 +717,7 @@ main {
     display: inline-block;
 }
 
-.docs-card h4 {
+.docs-card h3 {
     margin-bottom: 0.8rem;
     font-size: 1.2rem;
 }
