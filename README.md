@@ -64,3 +64,19 @@ En la carpeta raiz de la web ejecuta el siguente comando en la consola:
 ```bash
 php -S localhost:8000
 ```
+### 5. Buscar localhost en el navegador
+
+Abre tu navegador web y accede a la siguiente dirección para visualizar la interfaz del proyecto en local:
+
+```text
+http://localhost:8000
+```
+
+Si todo está configurado correctamente, podrás acceder a:
+
+* `index.html` → Página principal del proyecto.
+* `docs.html` → Documentación técnica y arquitectura.
+* `manolo.html` → Simulación del chatbot.
+* `dashboard-dev.html` → Panel de control de reservas y monitorización.
+
+> **Nota:** Asegúrate de que el servidor PHP siga ejecutándose en la terminal mientras utilizas la web.
