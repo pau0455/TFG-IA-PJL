@@ -5,18 +5,18 @@ header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 
 // Configuración de la base de datos
-$host = '192.168.168.10'; // Asegúrate de que esta es tu IP actual
+$host = '192.168.168.10'; // Recordatorio de poner bien la ip de la BBDD
 $db   = 'restaurante';
 $user = 'postgres';
 $pass = '12345'; 
 $port = '5432';
 
 try {
-    // Conexión a PostgreSQL mediante PDO
+    // Conexión a PostgreSQL
     $dsn = "pgsql:host=$host;port=$port;dbname=$db;";
     $pdo = new PDO($dsn, $user, $pass,[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    // CONSULTA SQL ACTUALIZADA: Extrae tanto menús como platos sueltos
+    // CONSULTA SQL 100% final ultra duper not WIP ahora si que si
     $query = "
         SELECT 
             r.id_reserva,
