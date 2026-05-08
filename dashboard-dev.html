@@ -48,7 +48,8 @@
         } else {
             // Ejecuta la primera carga al instante
             fetchReservas();
-            // Bucle en tiempo real: Comprueba la BBDD cada 2 segundos silenciosamente
+            // Comprueba la BBDD cada 2 segundos full stealth
+            // El shuttering por fin arreglado
             setInterval(fetchReservas, 2000); 
         }
     </script>
