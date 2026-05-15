@@ -5,7 +5,7 @@ document.addEventListener('keypress', function (e) {
     }
 });
 
-// --- Lógica de la Documentación  ---
+// --- Lógica de los docs  ---
 function showDoc(docId, element) {
     const panes = document.querySelectorAll('.doc-pane');
     panes.forEach(pane => pane.classList.remove('active'));
@@ -38,8 +38,8 @@ function logoutDev() {
     window.location.href = 'login-dev.html';
 }
 
-// --- LÓGICA DASHBOARD ---
-let lastDataString = ""; // la variable salvadora
+// --- LÓGICA del dashbaord ---
+let lastDataString = ""; // la santa variable
 
 async function fetchReservas() {
     try {
@@ -55,7 +55,7 @@ async function fetchReservas() {
         }
 
     } catch (error) {
-        console.error("🛑 Error detectado en JavaScript:", error);
+        console.error("Error detectado en JavaScript:", error);
         
         // mambo
         if (lastDataString === "") {
@@ -83,7 +83,7 @@ function renderTable(reservas) {
         const dateObj = new Date(r.fecha_hora);
         const fechaFormat = dateObj.toLocaleDateString('es-ES') + ' - ' + dateObj.toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit'});
         
-        // Construimos la columna de pedidos lógicamente
+        // columna de los pedidos actualizada con lo de los menus y los platos
         let pedidoHTML = '';
         if (r.menus_solicitados) {
             pedidoHTML += `<div style="margin-bottom: 4px; color: #e5e7eb;"><strong>📦 Menús:</strong> ${r.menus_solicitados}</div>`;
