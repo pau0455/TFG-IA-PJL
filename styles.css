@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto+Mono:wght@400;500&family=Outfit:wght@800&display=swap');
 
 /* ==========================================================================
-   ÍNDICE DEL CSS
+   ÍNDICE DEL CSS PARA MANTENER LA CORDURA
    ==========================================================================
-   1. VARIABLES GLOBALES Y RESET (Colores, fuentes, reseteo de márgenes)
-   2. ESTILOS BASE Y COMPONENTES (Botones, gradientes, layout principal)
-   3. NAVEGACIÓN Y FOOTER (Menú superior y pie de página)
-   4. PÁGINA: INICIO (Hero, animaciones de características, clientes)
-   5. PÁGINA: PLANES (Tarjetas de precios)
-   6. PÁGINA: DEMO CHAT (Interfaz de simulación)
-   7. PÁGINA: DOCS DEVELOPERS (Layout lateral, formato de texto y código)
-   8. TEMAS EXTERNOS (Webs hipotéticas como Restaurantes Manolo)
-   9. VISTA DESARROLLADOR (LOGIN Y DASHBOARD)
+   1. VARIABLES GLOBALES Y RESET
+   2. ESTILOS BASE Y COMPONENTES
+   3. NAVEGACIÓN Y FOOTER
+   4. PÁGINA: INICIO
+   5. PÁGINA: PLANES
+   6. PÁGINA: DEMO CHAT
+   7. PÁGINA: DOCS DEVELOPERS
+   8. TEMAS EXTERNOS 
+   9. VISTA DESARROLLADOR
    ========================================================================== */
 
 
@@ -25,11 +25,11 @@
 }
 
 body {
-    overflow-x: hidden; /* Evita el scroll horizontal no deseado */
+    overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 :root {
-    /* Paleta de colores AITalk (Dark Theme) */
+    /* Paleta de colores AITalk */
     --ai-bg: #0d0e15; 
     --ai-surface: rgba(255, 255, 255, 0.02);
     --ai-border: rgba(255, 255, 255, 0.08); 
@@ -56,7 +56,7 @@ body.aitalk-theme {
     flex-direction: column;
 }
 
-/* Efecto de luz de fondo (Glow) */
+/* Efecto de luz de fondo */
 .glow {
     position: fixed;
     top: -10%;
@@ -172,7 +172,7 @@ main {
 
 
 /* ==========================================================================
-   4. PÁGINA: INICIO (Hero, Animaciones y Clientes)
+   4. PÁGINA: INICIO
    ========================================================================== */
 .hero {
     text-align: center;
@@ -195,7 +195,7 @@ main {
     margin-bottom: 2.5rem;
 }
 
-/* Filas de Características (Texto + Visual) */
+/* Filas de Características, tema del texto y lo visual */
 .feature-row {
     display: flex;
     align-items: center;
@@ -234,7 +234,7 @@ main {
     position: relative;
 }
 
-/* Animación 1: Burbujas de Chat */
+/* Animación de la Burbuja de Chat */
 .chat-anim {
     display: flex;
     flex-direction: column;
@@ -272,7 +272,7 @@ main {
     90%, 100% { opacity: 0; transform: translateY(-10px); }
 }
 
-/* Animación 2: Cuadrícula de Calendario */
+/* Animación para la cuadrícula del calendario */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -304,7 +304,7 @@ main {
     50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
 }
 
-/* Animación 3: Nodos de Base de Datos */
+/* Animación de los Nodos de la Base de Datos */
 .db-nodes {
     position: relative;
     width: 180px;
@@ -400,7 +400,7 @@ main {
 
 
 /* ==========================================================================
-   5. PÁGINA: PLANES (Precios)
+   5. PÁGINA: PLANES
    ========================================================================== */
 .pricing-grid {
     display: grid;
@@ -513,7 +513,7 @@ main {
     align-items: flex-start;
 }
 
-/* --- Menú Lateral (Sidebar) --- */
+/* --- Menú Lateral --- */
 .docs-sidebar {
     width: 250px;
     position: sticky;
@@ -570,7 +570,7 @@ main {
     display: block;
 }
 
-/* Títulos idénticos a las capturas (Extra Bold y Blancos) */
+/* Títulos */
 .doc-pane h2 {
     font-size: 2.2rem;
     font-weight: 800;
@@ -586,7 +586,7 @@ main {
     margin: 2.5rem 0 1.2rem;
 }
 
-/* Párrafos base (Gris) */
+/* Párrafos base */
 .doc-pane p {
     color: var(--ai-muted);
     line-height: 1.7;
@@ -594,9 +594,7 @@ main {
     margin-bottom: 1.5rem;
 }
 
-/* --- FORMATO ESPECÍFICO DE LISTAS PARA CLAVAR LAS CAPTURAS --- */
-
-/* Anulamos los márgenes por defecto del navegador para control absoluto */
+/* Para anular los márgenes por defecto del navegador */
 .doc-pane ul,
 .doc-pane ol {
     list-style: none !important; 
@@ -606,7 +604,7 @@ main {
 }
 
 /* =========================================
-   REGLAS COMUNES PARA TODAS LAS LISTAS (ul y ol)
+   REGLAS COMUNES PARA TODAS LAS LISTAS
    ========================================= */
 .doc-pane ul li,
 .doc-pane ol li {
@@ -617,14 +615,14 @@ main {
     line-height: 1.7;
 }
 
-/* Las palabras en negrita [strong] se vuelven BLANCAS */
+/* Las palabras en negrita se vuelven BLANCAS */
 .doc-pane ul li strong,
 .doc-pane ol li strong {
     color: #ffffff;
     font-weight: 700;
 }
 
-/* Las palabras en cursiva [em] se vuelven BLANCAS */
+/* Las palabras en cursiva se vuelven BLANCAS */
 .doc-pane ul li em,
 .doc-pane ol li em {
     color: #ffffff;
@@ -633,13 +631,13 @@ main {
 
 
 /* =========================================
-   1. LISTAS CON VIÑETAS (PostgreSQL / n8n)
+   1. LISTAS CON VIÑETAS
    ========================================= */
 .doc-pane ul li {
     padding-left: 1.2rem; /* Espacio para el punto */
 }
 
-/* Dibujamos el punto manualmente alineado a la izquierda */
+/* Dibuja el punto manualmente alineado a la izquierda */
 .doc-pane ul li::before {
     content: "•"; 
     position: absolute;
@@ -654,15 +652,15 @@ main {
    2. LISTAS NUMERADAS (Google Calendar)
    ========================================= */
 .doc-pane ol {
-    counter-reset: doc-counter; /* Iniciamos un contador interno CSS */
+    counter-reset: doc-counter; /* Inicia un contador interno CSS */
 }
 
 .doc-pane ol li {
-    counter-increment: doc-counter; /* Sumamos 1 por cada elemento */
+    counter-increment: doc-counter; /* Suma 1 por cada elemento */
     padding-left: 1.5rem; /* Espacio exacto entre el número y el texto */
 }
 
-/* Dibujamos el número (1., 2., 3...) exactamente en la coordenada 0 */
+/* Dibujamos el número exactamente en la coordenada 0 */
 .doc-pane ol li::before {
     content: counter(doc-counter) "."; 
     position: absolute;
@@ -700,7 +698,7 @@ main {
     border: 1px solid var(--ai-border);
     background: var(--ai-surface);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1rem 1.2rem;
     transition: background 0.2s;
     cursor: pointer;
 }
@@ -712,13 +710,13 @@ main {
 .docs-icon {
     font-family: var(--ai-font-mono);
     color: #a855f7;
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
     font-size: 1.2rem;
     display: inline-block;
 }
 
 .docs-card h3 {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.4rem;
     font-size: 1.2rem;
 }
 
@@ -731,10 +729,10 @@ main {
 
 
 /* ==========================================================================
-   8. TEMAS EXTERNOS (Webs hipotéticas de clientes)
+   8. TEMAS EXTERNOS
    ========================================================================== */
 
-/* --- TEMA: Restaurantes Manolo --- */
+/* --- tema de Restaurantes Manolo --- */
 body.manolo-theme {
     background-color: #FDFBF7;
     color: #2C2C2C;
@@ -821,7 +819,7 @@ body.manolo-theme {
 }
 
 /* ==========================================================================
-   VISTA DESARROLLADOR (LOGIN Y DASHBOARD)
+   VISTA DESARROLLADOR 
    ========================================================================== */
    .login-box {
     background: var(--ai-surface);

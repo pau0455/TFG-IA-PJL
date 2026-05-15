@@ -10,12 +10,12 @@
     <div class="glow"></div>
     <nav class="navbar">
         <a href="index.html" class="logo">AITalk</a>
-<div class="nav-links">
+        <div class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="planes.html">Planes</a>
             <a href="about.html">Sobre Nosotros</a>
             <a href="docs.html">Developers Docs</a>
-            <a href="login-dev.html" style="color: #a855f7; font-weight: bold;">🧑‍💻 Vista Dev</a>
+            <a href="login-dev.html" style="color: #a855f7; font-weight: bold;">Vista Dev</a>
         </div>
     </nav>
 
@@ -25,23 +25,39 @@
                 <div class="group-title">Primeros Pasos</div>
                 <ul>
                     <li><a onclick="showDoc('doc-intro', this)" class="active">Introducción a AITalk</a></li>
+                    <li><a onclick="showDoc('doc-context', this)">Contexto y Justificación</a></li>
+                    <li><a onclick="showDoc('doc-objectives', this)">Objetivos del Proyecto</a></li>
                     <li><a onclick="showDoc('doc-telegram', this)">Interfaz Telegram</a></li>
+                </ul>
+                <div class="group-title">Requisitos</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-req-func', this)">Requisitos Funcionales</a></li>
+                    <li><a onclick="showDoc('doc-req-nofunc', this)">Requisitos No Funcionales</a></li>
+                    <li><a onclick="showDoc('doc-research', this)">Tareas de Investigación</a></li>
                 </ul>
                 <div class="group-title">Arquitectura & Nodos</div>
                 <ul>
                     <li><a onclick="showDoc('doc-n8n', this)">Orquestación con n8n</a></li>
-                    <li><a onclick="showDoc('doc-postgres', this)">Base de Datos (PostgreSQL)</a></li>
+                    <li><a onclick="showDoc('doc-postgres', this)">Base de Datos</a></li>
                     <li><a onclick="showDoc('doc-calendar', this)">Integración Google Calendar</a></li>
                 </ul>
                 <div class="group-title">Modelos de IA</div>
                 <ul>
-                    <li><a onclick="showDoc('doc-llm', this)">Motor LLM (Devstral latest)</a></li>
-                    <li><a onclick="showDoc('doc-audio', this)">Módulo STT (Gemini 3.1 Flash Lite)</a></li>
+                    <li><a onclick="showDoc('doc-llm', this)">Motor LLM</a></li>
+                    <li><a onclick="showDoc('doc-audio', this)">Módulo STT</a></li>
+                    <li><a onclick="showDoc('doc-tts', this)">Módulo TTS</a></li>
                 </ul>
-                <div class="group-title">Despliegue & Gestión</div>
+                <div class="group-title">Funcionalidades</div>
                 <ul>
-                    <li><a onclick="showDoc('doc-agile', this)">Metodología (Taiga & Github)</a></li>
-                    <li><a onclick="showDoc('doc-nginx', this)">Servidor Web Nginx</a></li>
+                    <li><a onclick="showDoc('doc-menu-query', this)">Consulta Dinámica de Menú</a></li>
+                    <li><a onclick="showDoc('doc-reservas', this)">Gestión de Reservas</a></li>
+                </ul>
+                <div class="group-title">Web & Despliegue</div>
+                <ul>
+                    <li><a onclick="showDoc('doc-web', this)">Web del Proyecto</a></li>
+                    <li><a onclick="showDoc('doc-dashboard', this)">Dashboard de Desarrollo</a></li>
+                    <li><a onclick="showDoc('doc-agile', this)">Metodología y Gestión</a></li>
+                    <li><a onclick="showDoc('doc-nginx', this)">Infraestructura y Servidor</a></li>
                 </ul>
             </aside>
 
@@ -49,73 +65,170 @@
                 <!-- PANEL 1: INTRODUCCIÓN -->
                 <div id="doc-intro" class="doc-pane active">
                     <h1 style="font-size: 3rem; text-align: center; margin-bottom: 0.5rem;">Desarrolla con AITalk</h1>
-                    <p style="text-align: center; color: var(--ai-muted); margin-bottom: 3rem;">Documentación técnica de la plataforma creada por Pau Laguna, Joel Ortega y Liming Xin.</p>
 
                     <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Arquitectura del Sistema IA Agéntica</h2>
-                    <p>AITalk es un sistema automatizado e inteligente de atención al cliente diseñado para cubrir las necesidades de empresas de hostelería, permitiendo gestionar reservas, responder consultas sobre el menú y mantener conversaciones fluidas en lenguaje natural.</p>
+                    <p>AITalk es un sistema automatizado e inteligente de atención al cliente diseñado para cubrir las necesidades de empresas de hostelería, basado en una arquitectura de IA agéntica. El objetivo del proyecto es crear un asistente virtual capaz de gestionar reservas, responder consultas sobre el menú y alérgenos, y mantener una conversación fluida en lenguaje natural a través de Telegram.</p>
+                    <p>Se ha seguido una metodología ágil utilizando herramientas de gestión tipo Kanban, específicamente Taiga. El desarrollo se ha dividido en pequeños flujos de trabajo modulares dentro del orquestador n8n. En resumen, se utilizan múltiples herramientas dentro de n8n como Telegram, Google Calendar, PostgreSQL y una API de IA para lograr la creación de un agente.</p>
                     
                     <div class="docs-grid" style="margin-top: 2rem;">
-                        <div class="docs-card" onclick="showDoc('doc-n8n', document.querySelectorAll('.docs-sidebar a')[2])">
+                        <div class="docs-card" onclick="showDoc('doc-n8n', document.querySelectorAll('.docs-sidebar a')[7])">
                             <span class="docs-icon">{ }</span>
-                            <h3>Orquestador (n8n)</h3>
-                            <p>El núcleo del proyecto. Utiliza flujos de trabajo en n8n para conectar las diferentes APIs y dirigir los inputs a través de nodos modulares.</p>
+                            <h3>Orquestador</h3>
+                            <p>Pilar fundamental del proyecto. Permite integrar y coordinar los diferentes servicios a través de flujos de trabajo automatizados en n8n.</p>
                         </div>
-                        <div class="docs-card" onclick="showDoc('doc-llm', document.querySelectorAll('.docs-sidebar a')[5])">
-                            <span class="docs-icon">🧠</span>
-                            <h3>Motor LLM (Devstral latest)</h3>
-                            <p>Analiza el contexto, extrae las intenciones del usuario y genera respuestas estructuradas utilizando Devstral latest a través de Mistral Studio.</p>
+                        <div class="docs-card" onclick="showDoc('doc-llm', document.querySelectorAll('.docs-sidebar a')[10])">
+                            <span class="docs-icon">&lt; /&gt;</span>
+                            <h3>Motor LLM</h3>
+                            <p>Nodo principal que ajusta el comportamiento del agente. Interpreta el contexto, decide el estilo de respuesta y determina si debe invocar herramientas externas.</p>
                         </div>
-                        <div class="docs-card" onclick="showDoc('doc-audio', document.querySelectorAll('.docs-sidebar a')[6])">
-                            <span class="docs-icon">🎙️</span>
-                            <h3>Módulo STT (Gemini)</h3>
-                            <p>Utilizamos las altas capacidades multimodales de Gemini 3.1 Flash Lite para transcribir el audio (notas de voz) a texto plano con rapidez.</p>
+                        <div class="docs-card" onclick="showDoc('doc-audio', document.querySelectorAll('.docs-sidebar a')[11])">
+                            <span class="docs-icon">~</span>
+                            <h3>Módulo STT</h3>
+                            <p>Modelo ligero optimizado para la transcripción de audio a texto plano mediante las capacidades multimodales de Gemini 3.1 Flash Lite.</p>
                         </div>
-                        <div class="docs-card" onclick="showDoc('doc-postgres', document.querySelectorAll('.docs-sidebar a')[3])">
-                            <span class="docs-icon">🗄️</span>
-                            <h3>Base de Datos (PostgreSQL)</h3>
-                            <p>Almacena el inventario de menús, información de alérgenos, locales, y la memoria contextual de las conversaciones con los clientes.</p>
+                        <div class="docs-card" onclick="showDoc('doc-postgres', document.querySelectorAll('.docs-sidebar a')[8])">
+                            <span class="docs-icon">[ / ]</span>
+                            <h3>Base de Datos</h3>
+                            <p>Conexión directa a la base de datos relacional. Almacena menús, alérgenos, locales y la memoria contextual de las conversaciones.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- PANEL: CONTEXTO Y JUSTIFICACIÓN -->
+                <div id="doc-context" class="doc-pane">
+                    <h2>Contexto y Justificación</h2>
+                    
+                    <h3>El Problema en la Hostelería</h3>
+                    <p>El entorno actual de la pequeña y mediana hostelería se caracteriza por la multiplicidad de canales de comunicación. Los clientes intentan contactar con los establecimientos a través de llamadas telefónicas, redes sociales o aplicaciones de mensajería instantánea. Esta dispersión genera un volumen de consultas que el personal del restaurante, enfocado en la operativa física del local, difícilmente puede gestionar de forma ininterrumpida.</p>
+                    <p>Actualmente, la gestión de reservas en este tipo de negocios oscila entre dos extremos. Por un lado, se encuentran los métodos manuales basados en libros de reservas o anotaciones informales, los cuales son propensos a errores humanos, solapamientos y pérdida de información. Por otro lado, existen plataformas digitales de terceros que centralizan las reservas, pero que suelen implicar el pago de altas comisiones o la pérdida de control sobre los datos de los clientes.</p>
+                    <p>Además, los usuarios demandan cada vez más inmediatez. La imposibilidad de realizar una reserva a altas horas de la noche o la falta de respuesta inmediata ante consultas comunes, como la disponibilidad de un menú específico o la presencia de alérgenos en los platos, se traduce frecuentemente en la pérdida de clientes potenciales.</p>
+
+                    <h3>Por qué AITalk</h3>
+                    <p>AITalk nace en este escenario para democratizar el acceso a tecnologías de vanguardia. Al aprovechar herramientas de código abierto y modelos de lenguaje de última generación, se propone una alternativa tecnológica que otorga autonomía al negocio, centraliza la información y proporciona un servicio ininterrumpido sin incrementar los costes de personal.</p>
+                    <p>El desarrollo de este proyecto se justifica por la necesidad imperante de resolver la sobrecarga administrativa y económica que sufren las pequeñas empresas al intentar ofrecer una atención al cliente continua. Delegar estas tareas rutinarias a un agente de inteligencia artificial accesible a través de una plataforma de uso masivo mejora radicalmente la experiencia del usuario. El cliente final no necesita instalar aplicaciones de terceros ni navegar por interfaces web complejas, sino que interactúa con el restaurante de la misma manera que lo haría con un contacto humano.</p>
+                    
+                    <h3>Justificación Técnica</h3>
+                    <p>Desde el punto de vista técnico, la construcción de AITalk supone un desafío integrador que justifica plenamente su realización como proyecto de fin de ciclo. Exige la combinación de múltiples disciplinas informáticas adquiridas durante la formación académica: el despliegue de infraestructuras de red avanzadas, la administración de sistemas gestores de bases de datos relacionales, la programación de lógica de negocio y la integración de interfaces de programación de aplicaciones externas.</p>
+                    <p>La adopción de un orquestador de flujos de trabajo permite demostrar la capacidad de diseñar arquitecturas modulares. Esta modularidad garantiza que el sistema sea tolerante a fallos y fácilmente escalable en el futuro. Por consiguiente, AITalk no solo resuelve un problema comercial tangible, sino que sirve como demostración práctica de competencias avanzadas en administración de sistemas y desarrollo de software moderno.</p>
+                </div>
+
+                <!-- PANEL: OBJETIVOS -->
+                <div id="doc-objectives" class="doc-pane">
+                    <h2>Objetivos del Proyecto</h2>
+                    
+                    <h3>Objetivo General</h3>
+                    <p>Desarrollar un sistema automatizado inteligente capaz de gestionar tareas y conectar diferentes servicios mediante flujos de trabajo modulares, ofreciendo una atención al cliente autónoma y en lenguaje natural.</p>
+                    
+                    <h3>Objetivos Específicos</h3>
+                    <ul>
+                        <li><strong>Integración de IA:</strong> Conectar el modelo Devstral latest de Mistral para interpretar intenciones y extraer datos clave. El agente ha sido configurado mediante prompt engineering para comprender el contexto de un restaurante y responder de manera coherente.</li>
+                        <li><strong>Interfaz de Usuario:</strong> Implementar un bot de Telegram como canal principal de comunicación fluida y accesible para el usuario final, procesando tanto entradas de texto como archivos de voz.</li>
+                        <li><strong>Gestión de Reservas:</strong> Sincronizar la IA con Google Calendar mediante API para visualizar, crear y modificar eventos en tiempo real, evitando solapamientos y validando disponibilidad de forma autónoma.</li>
+                        <li><strong>Gestión de Datos:</strong> Diseñar y conectar una base de datos PostgreSQL para almacenar menús, alérgenos, locales e información de clientes, permitiendo a la IA realizar consultas dinámicas y registrar los datos necesarios.</li>
+                    </ul>
+
+                    <h3>Estrategia y Planificación</h3>
+                    <p>El enfoque seleccionado para la consecución del proyecto se basa en un desarrollo de carácter incremental y modular. En lugar de intentar construir un sistema monolítico desde el inicio, se decidió dividir la arquitectura en componentes independientes que interactúan entre sí. Esta decisión estratégica minimiza los riesgos técnicos, ya que permite aislar los errores y facilita la validación de cada pieza antes de su integración en el conjunto global.</p>
+                    <p>El punto de partida del desarrollo consistió en la validación del modelo de lenguaje. Se priorizó comprobar si la inteligencia artificial era capaz de asumir un rol específico, comprender el contexto de un restaurante y responder de manera coherente sin sufrir desviaciones o alucinaciones. Una vez asegurada la viabilidad del razonamiento de la máquina, la estrategia dictó avanzar hacia la conexión de herramientas externas, integrando progresivamente la memoria a largo plazo, la gestión de calendarios y, finalmente, la interfaz del usuario final.</p>
+                    <p>Se identificó como posible dificultad la latencia en las respuestas de los modelos de inteligencia artificial y los límites de peticiones de las interfaces públicas. Para mitigar este riesgo, la estrategia de desarrollo contempló desde el inicio la posibilidad de intercambiar los modelos de lenguaje subyacentes sin alterar la lógica central del flujo de trabajo, asegurando así la continuidad operativa ante posibles cuellos de botella.</p>
+                </div>
+
                 <!-- PANEL: TELEGRAM -->
                 <div id="doc-telegram" class="doc-pane">
-                    <h2>Módulo Telegram (Frontend)</h2>
-                    <p>Actúa como frontend principal entre el cliente y el sistema. Escucha peticiones y retorna las respuestas generadas por la IA directamente al chat del usuario, ya sea en su dispositivo móvil o de escritorio.</p>
-                    <h3>¿Por qué Telegram?</h3>
-                    <p>Al delegar la tarea de atención al cliente a un agente de IA accesible mediante una plataforma de uso masivo como Telegram, <strong>se mejora significativamente la experiencia del usuario final</strong>. El cliente no tiene que lidiar con interfaces web complejas ni sufrir tiempos de espera telefónicos. Basados en nuestra experiencia técnica, Telegram resultó ser la opción más robusta y versátil para esta tarea frente a otras alternativas de mensajería.</p>
+                    <h2>Módulo Telegram</h2>
+                    <p>Actúa como frontend entre el cliente y el sistema. Escucha peticiones y retorna las respuestas generadas por la IA directamente al chat del usuario en su dispositivo móvil o de escritorio.</p>
+                    
+                    <h3>Por qué Telegram</h3>
+                    <p>Al delegar la tarea de atención al cliente a un agente de IA accesible mediante una plataforma de uso masivo como Telegram, <strong>se mejora significativamente la experiencia del usuario final</strong>. El cliente no necesita navegar por interfaces web complejas ni sufrir tiempos de espera telefónicos. Basados en el conocimiento y experiencia obtenidos durante la formación, Telegram resultó ser la opción más robusta y versátil para esta tarea frente a otras alternativas de mensajería.</p>
+                    
+                    <h3>Procesamiento Dual: Texto y Voz</h3>
+                    <p>El nodo de Telegram escucha continuamente mensajes nuevos. Cuando llega un mensaje, se pasa a un nodo condicional <strong>"if"</strong> que tiene como objetivo diferenciar los mensajes de voz de los de texto. Esta lógica permite cumplir con uno de los requisitos secundarios: el soporte de Speech-to-Text. Si el mensaje es de texto, se procesa directamente; si es de voz, se envía primero al módulo de transcripción antes de pasar al agente IA.</p>
+                </div>
+
+                <!-- PANEL: REQUISITOS FUNCIONALES -->
+                <div id="doc-req-func" class="doc-pane">
+                    <h2>Requisitos Funcionales</h2>
+                    <p>Los requisitos funcionales definen las capacidades concretas que el sistema AITalk debe cumplir para satisfacer las necesidades de atención al cliente en el sector de la hostelería.</p>
+                    
+                    <ul>
+                        <li><strong>RF1 - Interfaz Telegram:</strong> El sistema debe recibir y enviar mensajes a los usuarios a través de un bot de Telegram, funcionando como el canal principal de comunicación bidireccional entre el cliente y el agente de IA.</li>
+                        <li><strong>RF2 - Procesamiento IA:</strong> El sistema utilizará la API de Devstral latest para interpretar solicitudes complejas de los usuarios con precisión en formato texto.</li>
+                        <li><strong>RF3 - Gestión de Calendario:</strong> El sistema permitirá a la IA programar eventos mediante Google Calendar, indicando hora de inicio, finalización y título.</li>
+                        <li><strong>RF4 - Consultas BBDD:</strong> La IA debe tener acceso de lectura/escritura a una base de datos PostgreSQL para informar sobre menús, alérgenos y registrar los datos necesarios.</li>
+                        <li><strong>RF5 - Memoria Conversacional:</strong> El sistema debe recordar el contexto de la conversación durante un periodo de tiempo limitado para dar continuidad a las interacciones.</li>
+                    </ul>
+                </div>
+
+                <!-- PANEL: REQUISITOS NO FUNCIONALES -->
+                <div id="doc-req-nofunc" class="doc-pane">
+                    <h2>Requisitos No Funcionales</h2>
+                    <p>Los requisitos no funcionales establecen las cualidades de calidad que debe cumplir la arquitectura y el diseño del sistema para garantizar su mantenibilidad, usabilidad y evolución futura.</p>
+                    
+                    <ul>
+                        <li><strong>RNF1 - Modularidad:</strong> La arquitectura basada en n8n debe permitir añadir nuevos módulos o herramientas sin afectar al funcionamiento del sistema completo. Cada nodo realiza una tarea específica y puede ser modificado o reemplazado de forma independiente, lo que garantiza la tolerancia a fallos y la escalabilidad.</li>
+                        <li><strong>RNF2 - Naturalidad:</strong> El estilo de respuesta del agente debe ser fluido, natural y útil para el usuario final. Se ha trabajado extensamente en el prompt engineering del sistema para que el agente se comporte como un recepcionista profesional, resistente a intentos de desviación del tema o Jailbreak.</li>
+                        <li><strong>RNF3 - Escalabilidad:</strong> La base de datos y el flujo de trabajo deben estar estructurados de manera que permitan fácilmente añadir nuevas entidades en el futuro. El esquema relacional soporta la incorporación de nuevos locales, menús y servicios sin requerir una reestructuración completa del sistema.</li>
+                    </ul>
+                </div>
+
+                <!-- PANEL: TAREAS DE INVESTIGACIÓN -->
+                <div id="doc-research" class="doc-pane">
+                    <h2>Tareas de Investigación</h2>
+                    <p>Durante la fase de planificación del proyecto, se identificaron una serie de líneas de investigación críticas cuyo resultado condicionó las decisiones de diseño y tecnología adoptadas.</p>
+                    
+                    <ul>
+                        <li><strong>Análisis comparativo de orquestadores:</strong> Se evaluó n8n frente a otras alternativas del mercado para asegurar que cumple con los requisitos de autoalojamiento en local y posee nodos avanzados para el manejo de agentes de IA sin depender de altas cuotas de pago. n8n fue seleccionado por ser de código abierto, con capacidad de alojamiento local y potencia en el manejo de flujos de IA.</li>
+                        <li><strong>Investigación de modelos LLM:</strong> Se evaluaron y compararon la API de Gemini 3 Flash Preview y Mistral para medir la velocidad de respuesta, la comprensión del lenguaje natural, el coste por token y los límites de la cuota gratuita bajo concurrencia. Devstral latest resultó ofrecer mayor disponibilidad, menor latencia y una tasa de errores casi nula.</li>
+                        <li><strong>Diseño del esquema de base de datos:</strong> Se determinó la estructura relacional óptima en PostgreSQL para almacenar menús, alérgenos, disponibilidad de mesas y, especialmente, la gestión de la "memoria" o contexto conversacional a largo plazo de la IA. El esquema evolucionó iterativamente durante las fases de prueba.</li>
+                        <li><strong>Investigación de la API de Google Calendar:</strong> Se analizó la documentación de Google Cloud Console para implementar las operaciones de lectura "get events" y escritura "create events" desde los flujos de n8n de manera segura.</li>
+                        <li><strong>Pruebas de Prompt Engineering y seguridad:</strong> Se diseñó, probó y refinó el system prompt del agente para que asuma estrictamente su rol como recepcionista del restaurante, sepa cómo invocar las herramientas y sea resistente a intentos de Jailbreak.</li>
+                    </ul>
                 </div>
 
                 <!-- PANEL: N8N -->
                 <div id="doc-n8n" class="doc-pane">
                     <h2>Orquestación con n8n</h2>
-                    <p>n8n es el pilar fundamental y orquestador del proyecto. Permite integrar y coordinar los diferentes servicios que forman parte de la solución a través de flujos de trabajo automatizados, gestionando la comunicación entre la IA, PostgreSQL, Google Calendar y Telegram.</p>
+                    <p>n8n se utiliza como orquestador principal del proyecto, permitiendo integrar y coordinar los diferentes servicios que forman parte de la solución. A través de flujos de trabajo automatizados, n8n gestiona la comunicación entre la inteligencia artificial, la base de datos, los servicios externos como Google Calendar y el servicio de mensajería, en este caso Telegram.</p>
                     
                     <h3>Arquitectura Modular</h3>
-                    <p>La arquitectura sigue un modelo de nodos modulares centralizados. El sistema se divide en piezas más pequeñas que, al unirse, conforman un sistema robusto:</p>
+                    <p>La arquitectura sigue un modelo de nodos modulares centralizados en n8n. El sistema se divide en piezas más pequeñas que, al unirse, conforman un sistema robusto:</p>
                     <ul>
                         <li><strong>Trigger:</strong> El nodo de Telegram escucha continuamente mensajes nuevos.</li>
-                        <li><strong>Agente IA:</strong> El mensaje se pasa al nodo de "AI Agent" configurado con el modelo Devstral y un rol específico predefinido.</li>
-                        <li><strong>Memoria en Postgres:</strong> Se utiliza un módulo de memoria permanente almacenando en la base de datos, lo que permite que la IA recuerde el contexto a largo plazo.</li>
-                        <li><strong>Tools (Herramientas):</strong> Si el agente detecta que necesita accionar algo, llama de forma transparente a los submódulos (Calendar, BBDD).</li>
-                        <li><strong>Respuesta:</strong> El agente formula una respuesta natural, ejecuta las acciones y n8n la devuelve al bot de Telegram.</li>
+                        <li><strong>Agente IA:</strong> El mensaje se pasa al nodo de "if" con el objetivo de diferenciar mensajes de voz de los de texto, para posteriormente ser procesado por el nodo "AI Agent" configurado con el modelo Devstral latest y un rol específico predefinido mediante prompt engineering.</li>
+                        <li><strong>Memoria en Postgres:</strong> Se utiliza un módulo de memoria permanente almacenando en la propia base de datos PostgreSQL, lo que permite que la IA recuerde el contexto a largo plazo.</li>
+                        <li><strong>Tools:</strong> Si el agente detecta que necesita accionar algo, llama de forma transparente a los submódulos.</li>
+                        <li><strong>Respuesta:</strong> El agente formula una respuesta natural y lleva a cabo las acciones necesarias para cumplir la petición del usuario usando los diferentes módulos. n8n la devuelve al usuario a través del bot de Telegram.</li>
                     </ul>
+
+                    <h3>Por qué n8n y no otras alternativas</h3>
+                    <p>Se ha escogido n8n frente a alternativas comerciales por ser de código abierto, la capacidad de alojamiento local y potencia en el manejo de flujos de IA sin depender de las altas cuotas de otras plataformas de pago. La arquitectura basada en nodos permite estructurar el flujo de manera modular, donde cada nodo realiza una tarea específica como procesar mensajes, consultar información, almacenar datos o generar respuestas.</p>
+
+                    <h3>Migración del Proveedor de IA</h3>
+                    <p>Durante la fase inicial de desarrollo del proyecto, se utilizó como principal proveedor de modelos de inteligencia artificial la API de Gemini, desarrollada por Google. En un primer momento, esta solución parecía ser la opción más adecuada debido a su alto rendimiento y capacidades avanzadas de procesamiento de lenguaje natural.</p>
+                    <p>Sin embargo, a medida que avanzaba el desarrollo y aumentaba la demanda global del servicio externo, se comenzaron a experimentar limitaciones significativas derivadas de la alta carga sobre la API. El elevado número de solicitudes concurrentes generadas por usuarios de todo el mundo provocaba tiempos de respuesta inestables, mayores latencias y, en determinados casos, errores en las peticiones.</p>
+                    <p>Tras identificar este problema, se evaluaron alternativas que permitieran mantener la funcionalidad del sistema con mayor estabilidad y control sobre los recursos. Finalmente, se optó por integrar los modelos de Mistral AI, una empresa europea especializada en modelos de lenguaje. La estrategia de desarrollo ya contemplaba la posibilidad de intercambiar modelos, lo que permitió migrar sin alterar la lógica central del flujo de trabajo.</p>
                 </div>
 
                 <!-- PANEL: POSTGRESQL -->
                 <div id="doc-postgres" class="doc-pane">
-                    <h2>Base de Datos (PostgreSQL)</h2>
-                    <p>Conexión directa a la base de datos relacional del restaurante. Hemos elegido PostgreSQL por ser un software Open Source robusto y sin coste de licencia. Además de almacenar el inventario, sirve para guardar el contexto (memoria) de la IA.</p>
+                    <h2>Base de Datos</h2>
+                    <p>Conexión directa a la base de datos relacional del restaurante. Se ha seleccionado PostgreSQL por ser un software Open Source robusto y sin coste de licencia. Además de almacenar el inventario, sirve para guardar el contexto de la IA, centralizando toda la información en un único punto.</p>
                     
                     <h3>Esquema Conceptual Completo</h3>
-                    <p>Durante el desarrollo, diseñamos un esquema relacional profundo con las siguientes entidades principales:</p>
+                    <p>Durante el desarrollo, se diseñó un esquema relacional con las siguientes entidades principales:</p>
                     <ul>
-                        <li><strong>Comida e Ingredientes:</strong> Tablas relacionadas donde un Menú incluye platos (Comida) que a su vez contienen Ingredientes. Se controlan los <em>Alérgenos</em> (tipos y gravedad).</li>
-                        <li><strong>Locales y Empleados:</strong> Datos del restaurante físico (Ciudad, Horario, Capacidad) y sus trabajadores (Nombre, Apellido, Ocupación, Salario).</li>
-                        <li><strong>Clientes:</strong> Se almacena su DNI, Nombre, Apellido y Teléfono para la gestión de sus perfiles.</li>
-                        <li><strong>Reservas:</strong> Almacena la Fecha e ID del local y cliente. <em>Nota de desarrollo:</em> Durante las fases de prueba nos dimos cuenta de que debíamos expandir las capacidades; por ello añadimos una tabla intermedia para registrar el "menú" que el cliente ha pedido anticipadamente en su reserva, si es que lo solicita.</li>
+                        <li><strong>Comida e Ingredientes:</strong> Tablas relacionadas donde un Menú incluye platos que a su vez contienen Ingredientes. Se controlan los <em>Alérgenos</em>, permitiendo a la IA responder consultas sobre restricciones alimentarias de forma dinámica.</li>
+                        <li><strong>Locales y Empleados:</strong> Datos del restaurante físico y sus trabajadores. Cada local tiene su propia capacidad que la IA consulta para verificar la disponibilidad.</li>
+                        <li><strong>Clientes:</strong> Se almacena su DNI, Nombre, Apellido y Teléfono para la gestión de sus perfiles. Cuando un cliente nuevo realiza una reserva, la IA solicita su DNI y crea automáticamente su perfil en la base de datos.</li>
+                        <li><strong>Reservas:</strong> Almacena la Fecha, ID del local y del cliente. Durante las fases de prueba se detectó la necesidad de expandir las capacidades del agente: se añadió una tabla intermedia para registrar el menú que el cliente ha pedido anticipadamente en su reserva, si es que lo solicita.</li>
                     </ul>
+
+                    <h3>Evolución del Esquema</h3>
+                    <p>Durante las fases de prueba se detectó la necesidad de hacer múltiples retoques para expandir las capacidades del agente y crear una base de datos más cómoda y realista. Por ejemplo, en reservas se terminó considerando que era necesario añadir una tabla con el menú que han pedido en la reserva si es que han solicitado uno. Esto llevó al desarrollo de tablas nuevas para poder tener en presencia pedidos especiales: donde el usuario únicamente pide un plato individual en lugar de un simple menú, o un usuario pidiendo múltiples menús para una misma reserva. El esquema final cuenta con un total de <strong>12 tablas</strong> interrelacionadas.</p>
                     
+                    <h3>Memoria a Largo Plazo</h3>
+                    <p>Para evitar que el agente "olvidara" de qué estaba hablando el usuario entre mensaje y mensaje, se configuró un módulo de memoria persistente conectado a PostgreSQL. El sistema logra leer y escribir el historial conversacional exitosamente utilizando el identificador único del chat de Telegram, dotando al sistema de una naturalidad y continuidad imprescindibles para una atención al cliente de calidad.</p>
+
                     <div class="doc-code sql-block">
                         <span class="sql-comment">-- Ejemplo de consulta de IA para información dinámica</span><br>
                         <span class="sql-keyword">SELECT</span> <span class="sql-variable">p.nombre, a.tipo_alergeno</span><br>
@@ -127,52 +240,164 @@
 
                 <!-- PANEL: GOOGLE CALENDAR -->
                 <div id="doc-calendar" class="doc-pane">
-                    <h2>Gestión y Agendamiento (Google Calendar)</h2>
-                    <p>Compuesto por acciones estructuradas por "campos", permite a la IA interactuar directamente con la agenda del restaurante empleando la API de Google Cloud Console.</p>
+                    <h2>Gestión y Agendamiento</h2>
+                    <p>Compuesto por acciones estructuradas por "campos", permite a la IA interactuar directamente con la agenda del restaurante empleando la API de Google Cloud Console. El módulo soporta dos operaciones principales: <strong>"get events"</strong> para consultar la disponibilidad y <strong>"create events"</strong> para programar nuevas reservas.</p>
                     
                     <h3>Flujo Funcional de una Reserva</h3>
                     <ol>
-                        <li>El cliente solicita una reserva (fecha, hora, personas).</li>
-                        <li>La IA comprueba en PostgreSQL si el cliente está registrado. En caso contrario, inicia la creación de un perfil pidiendo su DNI y datos.</li>
-                        <li>Una vez validados los datos, la IA ejecuta la acción <strong>"get events"</strong> en Calendar para revisar la disponibilidad del local.</li>
-                        <li>Si hay hueco, utiliza el módulo <strong>"create events"</strong> para asignar el título, hora de inicio y finalización directamente en el calendario.</li>
-                        <li>Simultáneamente, la IA realiza los cambios en PostgreSQL (añadiendo la reserva a la tabla y vinculando el menú si aplica).</li>
+                        <li>El cliente solicita una reserva por Telegram, a menudo en lenguaje natural poco específico.</li>
+                        <li>La IA comprueba en PostgreSQL si el cliente está registrado. En caso contrario, inicia la creación de un perfil pidiendo su DNI y datos personales.</li>
+                        <li>Una vez validados los datos del cliente, la IA ejecuta la acción <strong>"get events"</strong> en Google Calendar para revisar la disponibilidad del local en la franja horaria solicitada.</li>
+                        <li>Si hay hueco, utiliza el módulo <strong>"create events"</strong> para asignar el título, hora de inicio y finalización directamente en el calendario del restaurante, evitando solapamientos de forma autónoma.</li>
+                        <li>Simultáneamente, la IA realiza los cambios necesarios en PostgreSQL.</li>
                         <li>Finalmente, el sistema confirma la reserva al cliente vía Telegram de forma totalmente autónoma.</li>
                     </ol>
+
+                    <h3>Validación Autónoma</h3>
+                    <p>El agente demostró ser capaz no solo de crear el evento, sino de consultar previamente la disponibilidad mediante "get events", logrando evitar solapamientos de reservas. Además, supo diferenciar entre pedidos imposibles y consultas legítimas, pidiendo aclaraciones al usuario cuando la información era ambigua o insuficiente, creando y editando reservas sin mucha dificultad.</p>
                 </div>
 
                 <!-- PANEL: MOTOR LLM -->
                 <div id="doc-llm" class="doc-pane">
-                    <h2>Motor LLM: Devstral latest (Mistral)</h2>
-                    <p>El cerebro del agente conversacional está impulsado por el modelo <strong>Devstral latest</strong> de Mistral AI.</p>
+                    <h2>Motor LLM: Devstral latest</h2>
+                    <p>Nodo principal que ajusta el comportamiento del "agente". Interpreta el contexto, decide qué estilo de respuesta ofrecer y determina si debe utilizar alguna herramienta externa para cumplir con la petición del usuario. El modelo que impulsa el agente conversacional es <strong>Devstral latest</strong> de Mistral AI.</p>
+
                     <h3>La Migración: De Gemini a Mistral</h3>
-                    <p>Durante la fase inicial del desarrollo, utilizamos la API de Gemini (Google) como proveedor principal por sus capacidades avanzadas. Sin embargo, a medida que aumentaba la demanda global de esa API externa, comenzamos a experimentar <strong>limitaciones significativas</strong>: tiempos de respuesta inestables, mayores latencias y errores debido a la alta carga.</p>
-                    <p>Tras evaluar alternativas, optamos por integrar los modelos de la empresa europea <strong>Mistral AI</strong> (vía Mistral Studio). Aunque inicialmente parecía tener un rendimiento ligeramente diferente, su disponibilidad mediante APIs gratuitas generosas y su menor saturación nos permitieron mejorar drásticamente la estabilidad. <strong>Resultado de la migración:</strong> Reducción considerable en tiempos de respuesta y disminución notable de la tasa de errores.</p>
-                    <h3>Uso de Herramientas (Tools)</h3>
-                    <p>La capacidad clave de Devstral en este proyecto es que formula respuestas naturales a la par que determina, de forma totalmente autónoma, si debe invocar herramientas externas (ej. consultar Postgres para dudas de alérgenos o ejecutar las consultas de calendario explicadas en la sección anterior).</p>
+                    <p>Durante la fase inicial de desarrollo del proyecto, se utilizó como principal proveedor de modelos de inteligencia artificial la API de Gemini, desarrollada por Google. En un primer momento, esta solución parecía ser la opción más adecuada debido a su alto rendimiento y capacidades avanzadas de procesamiento de lenguaje natural.</p>
+                    <p>Sin embargo, a medida que avanzaba el desarrollo y aumentaba la demanda global del servicio externo, se comenzaron a experimentar <strong>limitaciones significativas</strong> derivadas de la alta carga sobre la API. El elevado número de solicitudes concurrentes provocaba tiempos de respuesta inestables, mayores latencias y, en determinados casos, errores en las peticiones.</p>
+                    <p>Tras identificar este problema, se evaluaron alternativas que permitieran mantener la funcionalidad del sistema con mayor estabilidad y control sobre los recursos. Finalmente, se optó por integrar los modelos de <strong>Mistral AI</strong>, una empresa europea especializada en modelos de lenguaje. Devstral latest ofrece un modelo altamente avanzado con una API de cuota gratuita generosa, siendo capaz de resolver peticiones complejas que modelos más básicos no lograban procesar correctamente. Además, es uno de los modelos más rápidos del mercado, lo que resulta adecuado para un proyecto que requiere una conversación fluida.</p>
+                    <p><strong>Resultado de la migración:</strong> Se observó una reducción considerable en los tiempos de respuesta, así como una disminución notable en la tasa de errores asociados a las solicitudes a la API. Esta decisión contribuyó a aumentar la fiabilidad del sistema durante el proceso de desarrollo y pruebas.</p>
+
+                    <h3>Prompt Engineering y Seguridad</h3>
+                    <p>Para que el modelo de inteligencia artificial logre cumplir su objetivo, se ha estado puliendo a lo largo del curso un prompting que constituye el núcleo de sus objetivos como asistente. Este system prompt enseña al agente la estructura interna de la base de datos, cómo utilizar las herramientas de Calendar y finalmente cómo proceder al atender a usuarios. Un aspecto fundamental ha sido la resistencia anti intentos de <em>Jailbreak</em>, garantizando que el agente no se desvíe de su rol de recepcionista del restaurante.</p>
+
+                    <h3>Uso de Herramientas</h3>
+                    <p>La capacidad clave de Devstral en este proyecto es que formula respuestas naturales a la par que determina, de forma totalmente autónoma, si debe invocar herramientas externas. Si el agente detecta que necesita accionar algo, llama de forma transparente a los submódulos correspondientes sin intervención humana.</p>
                 </div>
 
                 <!-- PANEL: AUDIO / GEMINI FLASH LITE -->
                 <div id="doc-audio" class="doc-pane">
                     <h2>Módulo de Audio STT: Gemini 3.1 Flash Lite</h2>
-                    <p>A pesar de haber migrado el razonamiento principal a Mistral, mantenemos <strong>Gemini 3.1 Flash Lite</strong> exclusivamente por sus increíbles capacidades multimodales para la transcripción de audio (Speech-to-Text).</p>
+                    <p>A pesar de haber migrado el razonamiento principal a Mistral, se mantiene <strong>Gemini 3.1 Flash Lite</strong> de forma exclusiva para la transcripción de audio, aprovechando sus capacidades multimodales. Es un modelo ligero optimizado para esta tarea específica.</p>
+                    
                     <h3>Integración de Notas de Voz</h3>
-                    <p>El cliente no está obligado a escribir texto. Si envía una nota de voz por Telegram, el orquestador n8n captura el archivo de audio. Al ser un entorno de hostelería, necesitábamos un modelo robusto. Gemini 3.1 Flash Lite procesa este audio a una velocidad extrema, lo convierte a texto plano, y ese texto se inyecta directamente al agente de Devstral para que procese la petición y continúe el flujo de trabajo estándar.</p>
+                    <p>El cliente no está obligado a escribir texto. Si envía una nota de voz por Telegram, el orquestador n8n captura el archivo de audio. Gemini 3.1 Flash Lite procesa este audio, lo convierte a texto plano, y ese texto se inyecta directamente al agente de Devstral para que procese la petición y continúe el flujo de trabajo estándar.</p>
+
+                    <h3>Flujo de Procesamiento Dual</h3>
+                    <p>Cuando el nodo de Telegram recibe un mensaje, se pasa a un nodo condicional <strong>"if"</strong> que diferencia automáticamente entre mensajes de voz y de texto. Si es texto, se procesa directamente por el AI Agent. Si es audio, primero se envía a Gemini 3.1 Flash Lite para su transcripción, y luego el texto resultante se inyecta al agente. Esto permite cumplir con uno de los requisitos secundarios: el soporte de Speech-to-Text para una experiencia de usuario completa y natural.</p>
                 </div>
-                
-                <!-- PANELES RESTANTES -->
+
+                <!-- PANEL: TTS / ELEVENLABS -->
+                <div id="doc-tts" class="doc-pane">
+                    <h2>Módulo TTS: ElevenLabs</h2>
+                    <p>Como complemento al módulo de transcripción de voz, AITalk incorpora <strong>ElevenLabs</strong> como motor de conversión de texto a voz. Esto permite que el agente no solo reciba mensajes de voz, sino que también pueda responder de forma hablada.</p>
+
+                    <h3>Respuesta en Voz Natural</h3>
+                    <p>El sistema determina el formato de respuesta en función del tipo de entrada del usuario. Si el cliente envió una nota de voz, la IA genera una respuesta que se convierte a audio mediante la API de ElevenLabs antes de ser enviada al chat de Telegram. Si el cliente escribió texto, la respuesta se envía en formato texto estándar. Esta lógica garantiza una experiencia de conversación bidireccional natural y coherente con el medio elegido por el usuario.</p>
+
+                    <h3>Integración en el Flujo</h3>
+                    <p>ElevenLabs se integra como un nodo adicional en el flujo de n8n, situado después del AI Agent y antes del nodo de respuesta de Telegram. Cuando el flujo detecta que la entrada original fue un mensaje de voz, la respuesta generada por Devstral se enruta a través del módulo TTS de ElevenLabs, que devuelve un archivo de audio listo para ser enviado como nota de voz al usuario.</p>
+                </div>
+
+                <!-- PANEL: CONSULTA DINÁMICA DE MENÚ -->
+                <div id="doc-menu-query" class="doc-pane">
+                    <h2>Consulta Dinámica de Menú e Información</h2>
+                    <p>Una de las funcionalidades principales de AITalk es la capacidad de responder en tiempo real a las consultas de los clientes sobre el menú del restaurante, ingredientes, alérgenos y cualquier información relevante del establecimiento.</p>
+                    
+                    <h3>Flujo de Consulta</h3>
+                    <ol>
+                        <li>El cliente escribe por Telegram preguntando por el menú o por restricciones alimentarias.</li>
+                        <li>La IA recibe la consulta y, de forma autónoma, decide invocar la herramienta de PostgreSQL para acceder a la información de los platos y alérgenos.</li>
+                        <li>Ejecuta una consulta dinámica en la base de datos que filtra los resultados según los criterios del usuario.</li>
+                        <li>Genera una respuesta coherente e inmediata en lenguaje natural que resuelve la duda del cliente, indicando platos disponibles, ingredientes y alérgenos asociados.</li>
+                    </ol>
+
+                    <h3>Ejemplo de Interacción</h3>
+                    <p>Si un cliente pregunta "¿Qué platos tienen para alguien con alergia a los frutos secos?", la IA consulta las tablas de <em>Comida</em>, <em>Ingredientes</em> y <em>Alérgenos</em> en PostgreSQL, filtra los resultados excluyendo los platos que contienen frutos secos, y responde con una lista de opciones seguras para el cliente. Todo este proceso ocurre de forma transparente y en tiempo real, sin intervención humana.</p>
+                </div>
+
+                <!-- PANEL: GESTIÓN DE RESERVAS -->
+                <div id="doc-reservas" class="doc-pane">
+                    <h2>Gestión y Agendamiento de Reservas</h2>
+                    <p>La funcionalidad de gestión de reservas es el núcleo operativo de AITalk. Permite que un cliente realice, consulte y modifique reservas de forma completamente autónoma a través de una conversación en lenguaje natural con el agente de IA.</p>
+                    
+                    <h3>Proceso Completo de Reserva</h3>
+                    <ol>
+                        <li><strong>Solicitud del cliente:</strong> El cliente solicita una reserva por Telegram, proporcionando los datos necesarios de forma natural, sin necesidad de rellenar formularios ni seguir un formato estricto.</li>
+                        <li><strong>Verificación del cliente:</strong> La IA comprueba que el cliente esté registrado en la base de datos PostgreSQL. En caso contrario, le crea un perfil pidiendo su DNI y datos de contacto, almacenándolo automáticamente.</li>
+                        <li><strong>Validación de datos:</strong> La IA extrae las entidades del mensaje y valida que los datos sean coherentes. Si el usuario proporciona información ambigua o un horario imposible, el agente solicita aclaraciones.</li>
+                        <li><strong>Consulta de disponibilidad:</strong> La IA ejecuta la acción <strong>"get events"</strong> en Google Calendar para revisar la disponibilidad del local en la franja horaria solicitada, evitando solapamientos.</li>
+                        <li><strong>Creación del evento:</strong> Si hay disponibilidad, utiliza <strong>"create events"</strong> para crear el evento en el calendario del restaurante y, simultáneamente, realiza los cambios necesarios en PostgreSQL.</li>
+                        <li><strong>Confirmación:</strong> El sistema confirma la reserva al cliente vía Telegram de forma totalmente autónoma, proporcionando un resumen con los detalles de la reserva.</li>
+                    </ol>
+
+                    <h3>Gestión de Pedidos Especiales</h3>
+                    <p>Durante las fases de prueba, se detectó la necesidad de soportar escenarios complejos como: un cliente que pide un plato individual en lugar de un menú completo, un usuario que solicita múltiples menús para una misma reserva, o pedidos que combinan menús y platos a la carta. La base de datos se expandió con tablas intermedias para gestionar estos casos, y la IA fue configurada para manejarlos de forma natural.</p>
+                </div>
+
+                <!-- PANEL: WEB DEL PROYECTO -->
+                <div id="doc-web" class="doc-pane">
+                    <h2>Web del Proyecto</h2>
+                    <p>El módulo web no es solo un portal corporativo al uso, sino que funciona como la verdadera cara visible de AITalk, adoptando toda la estética y narrativa de un producto SaaS moderno.</p>
+                    
+                    <h3>Landing Page</h3>
+                    <p>La landing page principal está diseñada para aterrizar el concepto y "vender" la visión del proyecto: enganchar al usuario desde el primer vistazo y demostrar cómo la automatización impulsada por IA puede fulminar el caos de las reservas manuales. Es el punto de entrada que traduce toda la complejidad del backend orquestado en una promesa clara de eficiencia para cualquier negocio de hostelería.</p>
+
+                    <h3>Estructura de Pricing</h3>
+                    <p>Para darle al proyecto ese toque de realidad y demostrar que tiene recorrido comercial, montamos una fachada completa con una estructura de pricing ficticia, dividida en niveles como "Local" y "Franquicia". Aunque ahora mismo operen como un mockup de cara a la galería, estos planes de suscripción reflejan perfectamente cómo variaría la arquitectura técnica en el mundo real: desde la asignación de memoria compartida y conexiones a bases de datos independientes en PostgreSQL, hasta los límites en la cuota de peticiones al modelo de Devstral. Es, en esencia, la prueba de que la infraestructura soporta un modelo de negocio escalable.</p>
+
+                    <h3>Demo: Restaurantes Manolo</h3>
+                    <p>Para demostrar que el despliegue es viable, creamos la demo de "Restaurantes Manolo", un entorno simulado de un cliente final donde llevamos nuestra solución a la práctica. En esta subpágina, la tecnología de AITalk se materializa en un widget flotante inyectado directamente en la interfaz del restaurante. Cualquiera que navegue por la web puede desplegar el chat y comprobar de primera mano cómo el agente comprende el lenguaje natural.</p>
+                </div>
+
+                <!-- PANEL: DASHBOARD DE DESARROLLO -->
+                <div id="doc-dashboard" class="doc-pane">
+                    <h2>Dashboard de Desarrollo</h2>
+                    <p>Como complemento fundamental a la experiencia del cliente, el módulo web incorpora un "Dashboard de Desarrollo" protegido por contraseña. Este panel interno opera como el centro de mando del restaurante y es donde el dueño puede ver las reservas que se han hecho en sus restaurantes y toda la información asociada a estas.</p>
+                    
+                    <h3>Stack Técnico del Dashboard</h3>
+                    <ul>
+                        <li><strong>Backend PHP:</strong> Utiliza un backend estructurado en PHP que se conecta de forma segura a PostgreSQL mediante la extensión PDO, garantizando la integridad y seguridad de las consultas.</li>
+                        <li><strong>Frontend Asíncrono:</strong> En el lado del cliente, se ha implementado un sistema de peticiones asíncronas en JavaScript, lo que permite que la tabla de gestión se actualice en tiempo real de forma automática y sin recargar la página, evitando parpadeos visuales en la interfaz.</li>
+                        <li><strong>Acceso Protegido:</strong> El dashboard requiere autenticación mediante credenciales de administrador, garantizando que solo el personal autorizado pueda acceder a los datos de reservas y clientes.</li>
+                    </ul>
+
+                    <h3>Funcionalidades del Panel</h3>
+                    <p>El dashboard muestra en tiempo real todas las reservas realizadas, incluyendo información detallada como: identificador de reserva, fecha y hora, nombre y apellidos del cliente, teléfono, local asignado, menús y platos solicitados, número de personas, y estado de la reserva. Los datos se actualizan automáticamente sin necesidad de recargar la página.</p>
+                </div>
+
+                <!-- PANEL: METODOLOGÍA -->
                 <div id="doc-agile" class="doc-pane">
                     <h2>Metodología, Viabilidad y Herramientas</h2>
-                    <h3>Desarrollo Ágil (Scrum)</h3>
-                    <p>El equipo ha seguido la metodología <strong>Scrum</strong> con sprints semanales. Para el reparto de tareas se ha utilizado <strong>Taiga</strong> (herramienta Kanban), visibilizando el estado en <em>To Do</em>, <em>In Progress</em>, y <em>Done</em>. El trabajo colaborativo y control de versiones de código y de los JSON de n8n se centraliza en <strong>GitHub</strong>.</p>
+                    
+                    <h3>Desarrollo Ágil</h3>
+                    <p>El equipo ha seguido la metodología <strong>Scrum</strong> con sprints semanales. Para la organización y reparto de tareas se ha utilizado <strong>Taiga</strong> como herramienta Kanban, permitiendo visibilizar el estado: <em>To Do</em>, <em>In Progress</em> y <em>Done</em> de cada fase. Aprendiendo simultáneamente el uso de esta herramienta de gestión de tiempo, llegando a bocetos funcionales para el seguimiento del proyecto.</p>
+                    <p>El control de versiones y el trabajo colaborativo del apartado web y los JSON de n8n se ha centralizado en <strong>GitHub</strong>. Ante los problemas por ejemplo, limitaciones de entornos virtuales con Ubuntu o VirtualBox, la metodología ágil permitió pivotar rápidamente y redistribuir tareas para no bloquear el desarrollo.</p>
+
                     <h3>Estudio Económico y Viabilidad</h3>
-                    <p>El coste del proyecto se sustenta principalmente en nuestras horas de desarrollo. A nivel de software, se ha priorizado estratégicamente el uso de herramientas gratuitas o de código abierto (Open Source) para <strong>asegurar la viabilidad comercial para una PYME</strong>. Utilizamos la versión self-hosted de n8n, base de datos PostgreSQL gratuita, y modelos de IA optimizados que ofrecen cuotas gratuitas generosas (Devstral API).</p>
+                    <p>El coste del proyecto se sustenta principalmente en las horas de desarrollo del equipo. A nivel de software, se ha priorizado estratégicamente el uso de herramientas gratuitas o de código abierto para <strong>asegurar la viabilidad comercial para una PYME</strong>:</p>
+                    <ul>
+                        <li><strong>n8n:</strong> Versión self-hosted "gratuita" en local.</li>
+                        <li><strong>Gemini 3 Flash Lite Preview:</strong> Modelo multimodal de Google utilizado a través de API con cuotas gratuitas durante el desarrollo.</li>
+                        <li><strong>Devstral latest:</strong> Modelo open-weight accesible vía Mistral Studio con API de cuota gratuita generosa, ofreciendo mayor capacidad operativa dentro de los límites gratuitos.</li>
+                        <li><strong>PostgreSQL:</strong> Software Open Source sin coste de licencia.</li>
+                        <li><strong>Servidor:</strong> Alojamiento en red local / máquinas virtuales con Ubuntu 24.04.</li>
+                    </ul>
                 </div>
                 
+                <!-- PANEL: NGINX -->
                 <div id="doc-nginx" class="doc-pane">
                     <h2>Infraestructura y Servidor Web</h2>
-                    <p>El despliegue se ha planificado en una red local / máquinas virtuales con el sistema operativo <strong>Ubuntu 24.04</strong>. Ante problemas de limitaciones en entornos virtuales (ej. VirtualBox), la metodología ágil nos permitió pivotar rápidamente sin bloquear el desarrollo.</p>
+                    <p>El despliegue se ha planificado en una red local / máquinas virtuales con el sistema operativo <strong>Ubuntu 24.04</strong>. Ante problemas de limitaciones en entornos virtuales, la metodología ágil permitió pivotar rápidamente sin bloquear el desarrollo.</p>
+                    
+                    <h3>Nginx como Proxy Inverso</h3>
                     <p>El tráfico de red y la exposición segura de los webhooks generados por n8n hacia Telegram se gestionan utilizando <strong>Nginx</strong> como proxy inverso, garantizando seguridad y manejo eficiente de peticiones HTTP/HTTPS.</p>
+
+                    <h3>Seguridad: HTTPS con SSL/TLS</h3>
+                    <p>Toda la arquitectura funciona bajo el protocolo HTTPS mediante certificados SSL/TLS. Dado que el sistema maneja credenciales de acceso de administradores y datos personales de los clientes en las reservas, la encriptación resulta un requisito fundamental.</p>
+
+                    <h3>Protocolo HTTP/3 y QUIC</h3>
+                    <p>La red se ha creado usando el estándar <strong>HTTP/3</strong> basado en el protocolo <strong>QUIC</strong>. Esta mejora en la infraestructura optimiza las peticiones asíncronas del Dashboard, asegurando que el flujo de datos en tiempo real entre PostgreSQL, PHP y el navegador sea ultrarrápido y ofrezca la experiencia impecable que exige un producto profesional. QUIC es un protocolo de transporte encriptado por defecto, diseñado para proporcionar conexiones más rápidas y seguras, sirviendo como fundamento subyacente para las nuevas generaciones de transferencia web asíncrona.</p>
                 </div>
             </div>
         </div>
