@@ -4,29 +4,29 @@
 
 Consiste en un sistema automatizado de atención al cliente para la hostelería basado en una arquitectura de Inteligencia Artificial agéntica. Este repositorio contiene el código fuente del portal web, la documentación técnica y el panel de control del proyecto.
 
-## ⚙️ Descripción del Proyecto General
+## Descripción del Proyecto General
 
 El núcleo del sistema no reside en esta web, sino en un orquestador **n8n** alojado en local. El flujo de trabajo principal hace lo siguiente:
 1. Recibe mensajes de usuarios a través de un bot de **Telegram**.
-2. Procesa texto e interpreta notas de voz (Speech-to-Text) utilizando el modelo **Gemini 3.1 Flash Lite**.
-3. Deriva la lógica conversacional al modelo **Devstral latest (Mistral AI)**, que actúa con un *system prompt* estricto de recepcionista.
-4. El agente tiene acceso a herramientas (*Tools*) para realizar consultas y escrituras en una base de datos **PostgreSQL** (para ver inventario de menús, alérgenos y aforo) y en **Google Calendar** (para agendar reservas reales).
+2. Procesa texto e interpreta notas de voz utilizando el modelo **Gemini 3.1 Flash Lite**.
+3. Deriva la lógica conversacional al modelo **Devstral latest**, que actúa con un *system prompt* estricto de recepcionista.
+4. El agente tiene acceso a herramientas para realizar consultas y escrituras en una base de datos **PostgreSQL**, para ver inventario de menús, alérgenos, aforo y en **Google Calendar**.
 
-## 💻 Función de esta Página Web
+## Función de esta Página Web
 
 Los archivos de este repositorio conforman la interfaz gráfica orientada a la presentación y administración del proyecto:
 
 * **Documentación Técnica (`docs.html`):** Detalla la arquitectura de nodos, los modelos LLM elegidos, el diseño de la base de datos y la justificación de las tecnologías.
 * **Simulación / Mockups (`manolo.html`):** Entornos de prueba para demostrar cómo se integraría el chatbot en un entorno real.
-* **Dashboard de Desarrollo (`dashboard-dev.html`, `reservas.php`, `login-dev`):** Un panel de control privado que se conecta directamente a la base de datos PostgreSQL. Utiliza PHP (con PDO) para extraer las reservas y Javascript para actualizar la tabla en tiempo real con Short Polling sin recargar la página.
+* **Dashboard de Desarrollo (`dashboard-dev.html`, `reservas.php`, `login-dev`):** Un panel de control privado que se conecta directamente a la base de datos PostgreSQL. Utiliza PHP para extraer las reservas y Javascript para actualizar la tabla en tiempo real con Short Polling sin recargar la página.
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
-* **Frontend:** HTML5, CSS3 (Vanilla, uso de variables nativas y CSS Grid/Flexbox), JavaScript (Fetch API para actualización asíncrona).
-* **Backend (Conexión a BBDD):** PHP 8+ (Extensión PDO_PGSQL).
-* **Base de datos:** PostgreSQL 14+ (Diseño relacional Cabecera-Detalle y Triggers de validación de aforo).
+* **Frontend:** HTML5, CSS3, JavaScript.
+* **Backend:** PHP 8+
+* **Base de datos:** PostgreSQL 14+
 
-## 🚀 Despliegue Local de la Web
+## Despliegue Local de la Web
 
 
 Esta guía detalla el paso a paso para desplegar la interfaz web en un entorno de pruebas.
@@ -79,4 +79,4 @@ Si todo está configurado correctamente, podrás acceder a:
 * `manolo.html` → Simulación del chatbot.
 * `dashboard-dev.html` → Panel de control de reservas y monitorización.
 
-> **Nota:** Asegúrate de que el servidor PHP siga ejecutándose en la terminal mientras utilizas la web.
+> **Nota:** Se debe asegurar que el servidor PHP siga ejecutándose en la terminal mientras utilizas la web.
